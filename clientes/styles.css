@@ -99,16 +99,3 @@ button:hover {
 .contact-button:hover {
     background-color: #2980b9;
 }
-
-.whatsapp-text {
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: -5px; /* Ajusta el espaciado según sea necesario */
-    margin-top: -30px; /* Ajusta el espaciado según sea necesario */
-}
-
-.whatsapp-text span {
-    display: block;
-    font-size: smaller; /* Ajusta el tamaño del texto según sea necesario */
-    color: #333; /* Ajusta el color del texto según sea necesario */
-}
