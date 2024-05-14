@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #071E46;
+}
+
+h2 {
+    color: #071E46;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: small;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+#botonPersonalizado {
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    font-weight: bold;
+    font-size:larger;
+    padding: 10px 20px;
+    background-color: #DD572E;
+    color: #fff;
+    border: orange;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.social-icons a {
+    display: inline-block; /* Alinea los iconos en línea */
+    margin: 10px; /* Añade un margen inferior de 10px a cada enlace de icono */
+    margin-top: 5px;
+}
+
+.social-icons img {
+    max-width: 40px; /* Limita el ancho máximo de los iconos a 40px */
+    height: auto; /* Mantiene la proporción original */
+}
+
+/* Estilos para la imagen centrada */
+.centered-image {
+    display: block;
+    margin: 5px auto; /* Separación de 20px del botón "RUEDA CON CONFIANZA" */
+    max-width: 350px; /* Limita el ancho al tamaño máximo de su contenedor */
+    height: auto; /* Mantiene la proporción original */
+}
+
+/* Estilos para los botones de contacto */
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.contact-button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: small;
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+}
+
+.contact-button:hover {
+    background-color: #2980b9;
+}
