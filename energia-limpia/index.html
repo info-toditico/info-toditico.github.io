@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toditico - Energía Limpia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              td: {
+                blue: "#0077b6",
+                "blue-dark": "#005a8c",
+                red: "#d62828",
+                "red-dark": "#b91c1c",
+                text: "#1a2332",
+                muted: "#5a6a7e",
+              },
+            },
+            fontFamily: {
+              heading: ["Montserrat", "sans-serif"],
+              body: ["Poppins", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      :root {
+        --blue: #0077b6;
+        --blue-dark: #005a8c;
+        --red: #d62828;
+        --text: #1a2332;
+        --muted: #5a6a7e;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(
+          135deg,
+          #daeaf5 0%,
+          #e8f2fa 25%,
+          #f5f9fc 50%,
+          #ffffff 72%,
+          #fdfcfa 100%
+        );
+        min-height: 100vh;
+        color: var(--text);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      @keyframes spinBlades {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .blades-spin {
+        animation: spinBlades 10s linear infinite;
+        transform-origin: center;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .anim-up {
+        opacity: 0;
+        animation: fadeUp 0.55s ease-out forwards;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-6px);
+        }
+      }
+      .logo-float {
+        animation: float 4s ease-in-out infinite;
+      }
+
+      .btn-td {
+        background: linear-gradient(
+          135deg,
+          var(--blue) 0%,
+          var(--blue-dark) 100%
+        );
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+      .btn-td::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.18) 50%,
+          transparent 100%
+        );
+        transform: translateX(-110%);
+        transition: transform 0.5s ease;
+      }
+      .btn-td:hover::after {
+        transform: translateX(110%);
+      }
+      .btn-td:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 119, 182, 0.32);
+      }
+      .btn-td:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(0, 119, 182, 0.22);
+      }
+
+      .social-btn {
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+      .social-btn:hover {
+        transform: translateY(-3px) scale(1.08);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      }
+
+      .prod-card {
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+      .prod-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+      }
+
+      .logo-t {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        line-height: 1;
+        color: var(--text);
+        position: relative;
+      }
+      .logo-t::after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        right: -6px;
+        width: 10px;
+        height: 10px;
+        background: var(--red);
+        border-radius: 50%;
+        box-shadow: 0 1px 4px rgba(214, 40, 40, 0.4);
+      }
+
+      .sep {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(0, 119, 182, 0.12) 50%,
+          transparent 100%
+        );
+      }
+
+      @keyframes toastIn {
+        from {
+          transform: translateX(120%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      @keyframes toastOut {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(120%);
+          opacity: 0;
+        }
+      }
+      .toast-in {
+        animation: toastIn 0.3s ease-out forwards;
+      }
+      .toast-out {
+        animation: toastOut 0.25s ease-in forwards;
+      }
+
+      .btn-top {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        transform: translateY(8px);
+      }
+      .btn-top.show {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateY(0);
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--blue);
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .blades-spin,
+        .logo-float {
+          animation: none;
+        }
+        .anim-up {
+          animation: none;
+          opacity: 1;
+        }
+        html {
+          scroll-behavior: auto;
+        }
+        .btn-td,
+        .social-btn,
+        .prod-card {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen relative overflow-x-hidden">
+    <!-- ==================== TOASTS ==================== -->
+    <div
+      id="toast-box"
+      class="fixed top-5 right-5 z-50 flex flex-col gap-2.5 pointer-events-none"
+    ></div>
+
+    <!-- ==================== ELEMENTOS DECORATIVOS DE FONDO ==================== -->
+    <div
+      class="fixed inset-0 pointer-events-none select-none z-0"
+      aria-hidden="true"
+    >
+      <!-- Molino de viento IZQUIERDO -->
+      <svg
+        class="absolute bottom-6 left-[3%] w-28 h-44 md:w-32 md:h-48 opacity-[0.08] md:opacity-[0.075]"
+        viewBox="0 0 100 150"
+      >
+        <rect x="47" y="48" width="6" height="100" rx="1" fill="#1a2332" />
+        <polygon points="34,146 66,146 59,142 41,142" fill="#1a2332" />
+        <rect x="41" y="38" width="18" height="13" rx="3" fill="#1a2332" />
+        <g class="blades-spin" style="transform-origin: 50px 44px">
+          <ellipse cx="50" cy="14" rx="4" ry="29" fill="#1a2332" />
+          <ellipse
+            cx="50"
+            cy="14"
+            rx="4"
+            ry="29"
+            fill="#1a2332"
+            transform="rotate(120 50 44)"
+          />
+          <ellipse
+            cx="50"
+            cy="14"
+            rx="4"
+            ry="29"
+            fill="#1a2332"
+            transform="rotate(240 50 44)"
+          />
+        </g>
+        <circle cx="50" cy="44" r="5" fill="#1a2332" />
+      </svg>
+
+      <!-- Panel solar DERECHO -->
+      <svg
+        class="absolute bottom-16 right-[3%] w-32 h-44 md:w-36 md:h-48 opacity-[0.12] md:opacity-[0.09]"
+        viewBox="0 0 120 160"
+      >
+        <line
+          x1="60"
+          y1="68"
+          x2="60"
+          y2="148"
+          stroke="#1a2332"
+          stroke-width="3"
+        />
+        <line
+          x1="35"
+          y1="148"
+          x2="85"
+          y2="148"
+          stroke="#1a2332"
+          stroke-width="3.5"
+          stroke-linecap="round"
+        />
+        <line
+          x1="60"
+          y1="105"
+          x2="38"
+          y2="148"
+          stroke="#1a2332"
+          stroke-width="1.8"
+        />
+        <line
+          x1="60"
+          y1="105"
+          x2="82"
+          y2="148"
+          stroke="#1a2332"
+          stroke-width="1.8"
+        />
+        <g transform="rotate(-12 60 60)">
+          <rect x="8" y="8" width="104" height="56" rx="2" fill="#1a2332" />
+          <line
+            x1="8"
+            y1="22"
+            x2="112"
+            y2="22"
+            stroke="#fff"
+            stroke-width="0.6"
+            opacity="0.25"
+          />
+          <line
+            x1="8"
+            y1="36"
+            x2="112"
+            y2="36"
+            stroke="#fff"
+            stroke-width="0.6"
+            opacity="0.25"
+          />
+          <line
+            x1="8"
+            y1="50"
+            x2="112"
+            y2="50"
+            stroke="#fff"
+            stroke-width="0.6"
+            opacity="0.25"
+          />
+          <line
+            x1="29"
+            y1="8"
+            x2="29"
+            y2="64"
+            stroke="#fff"
+            stroke-width="0.6"
+            opacity="0.25"
+          />
+          <line
+            x1="50"
+            y1="8"
+            x2="50"
+            y2="64"
+            stroke="#fff"
+            stroke-width="0.6"
+            opacity="0.25"
+          />
+          <line
+            x1="71"
+            y1="8"
+            x2="71"
+            y2="64"
+            stroke="#fff"
+            stroke-width="0.6"
+            opacity="0.25"
+          />
+          <line
+            x1="92"
+            y1="8"
+            x2="92"
+            y2="64"
+            stroke="#fff"
+            stroke-width="0.6"
+            opacity="0.25"
+          />
+          <rect
+            x="8"
+            y="8"
+            width="104"
+            height="56"
+            rx="2"
+            fill="none"
+            stroke="#1a2332"
+            stroke-width="2.5"
+          />
+        </g>
+      </svg>
+
+      <!-- Sol con trayectoria curva -->
+      <svg
+        id="sun-el"
+        class="absolute w-24 h-24 md:w-28 md:h-28"
+        style="top: 0; left: 0; opacity: 0.15"
+        viewBox="0 0 100 100"
+      >
+        <circle cx="50" cy="50" r="18" fill="#f59e0b" />
+        <circle cx="50" cy="50" r="11" fill="#fbbf24" opacity="0.5" />
+        <g stroke="#f59e0b" stroke-width="3" stroke-linecap="round">
+          <line x1="50" y1="7" x2="50" y2="19" />
+          <line x1="50" y1="81" x2="50" y2="93" />
+          <line x1="7" y1="50" x2="19" y2="50" />
+          <line x1="81" y1="50" x2="93" y2="50" />
+          <line x1="18" y1="18" x2="26" y2="26" />
+          <line x1="74" y1="74" x2="82" y2="82" />
+          <line x1="82" y1="18" x2="74" y2="26" />
+          <line x1="26" y1="74" x2="18" y2="82" />
+        </g>
+        <g
+          stroke="#f59e0b"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          opacity="0.5"
+        >
+          <line x1="50" y1="2" x2="50" y2="5" />
+          <line x1="50" y1="95" x2="50" y2="98" />
+          <line x1="2" y1="50" x2="5" y2="50" />
+          <line x1="95" y1="50" x2="98" y2="50" />
+          <line x1="12" y1="12" x2="15" y2="15" />
+          <line x1="85" y1="85" x2="88" y2="88" />
+          <line x1="88" y1="12" x2="85" y2="15" />
+          <line x1="15" y1="85" x2="12" y2="88" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- ==================== VISTA PRINCIPAL ==================== -->
+    <main
+      id="view-main"
+      class="relative z-10 max-w-md md:max-w-2xl lg:max-w-3xl mx-auto px-5 pt-4 md:pt-8 pb-16 min-h-screen flex flex-col items-center"
+    >
+      <!-- Logo -->
+      <div
+        class="logo-float anim-up text-center mb-3 md:mb-4"
+        style="animation-delay: 0.05s"
+      >
+        <div
+          class="w-24 h-24 md:w-32 md:h-32 mx-auto mb-2 md:mb-3 rounded-2xl bg-white/40 backdrop-blur-sm shadow-sm flex items-center justify-center border border-white/30"
+        >
+          <!-- Reemplaza con: <img src="logo.png" alt="Toditico" class="w-full h-full object-contain p-3"> -->
+          <span class="logo-t text-5xl md:text-6xl">T</span>
+        </div>
+        <h1
+          class="font-heading font-extrabold text-2xl md:text-4xl lg:text-5xl tracking-tight text-td-text"
+        >
+          Toditico
+        </h1>
+        <p
+          class="font-body font-light text-xs md:text-sm text-td-muted tracking-widest mt-0.5 uppercase"
+        >
+          Energía Limpia
+        </p>
+      </div>
+
+      <!-- Descargas -->
+      <section class="w-full anim-up mb-1" style="animation-delay: 0.18s">
+        <h2
+          class="font-heading font-bold text-xl md:text-2xl lg:text-3xl text-td-text leading-tight mb-0.5"
+        >
+          Información General de Toditico
+        </h2>
+        <p class="text-xs md:text-sm text-td-muted font-light mb-4 md:mb-5">
+          Energía Limpia
+        </p>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+          <a
+            href="./downloads/guia-instalacion-solar.pdf"
+            download
+            class="btn-td flex flex-col items-center justify-center gap-2 px-3 py-4 md:py-5 rounded-xl text-white text-center no-underline"
+            data-toast="Guía de Instalación Solar"
+            onclick="trackDownload(event)"
+          >
+            <i class="fas fa-book-open text-lg md:text-xl"></i>
+            <span class="text-[11px] md:text-sm font-medium leading-tight"
+              >Guía de Instalación Solar</span
+            >
+          </a>
+          <a
+            href="./downloads/TODITICO_CATÁLOGO_Energía_Limpia.xlsx"
+            download
+            class="btn-td flex flex-col items-center justify-center gap-2 px-3 py-4 md:py-5 rounded-xl text-white text-center no-underline"
+            data-toast="Catálogo de Productos"
+            onclick="trackDownload(event)"
+          >
+            <i class="fas fa-file-excel text-lg md:text-xl"></i>
+            <span class="text-[11px] md:text-sm font-medium leading-tight"
+              >Catálogo de Productos</span
+            >
+          </a>
+          <a
+            href="javascript:void(0)"
+            class="btn-td flex flex-col items-center justify-center gap-2 px-3 py-4 md:py-5 rounded-xl text-white text-center no-underline"
+            onclick="goToFichas(event)"
+          >
+            <i class="fas fa-wrench text-lg md:text-xl"></i>
+            <span class="text-[11px] md:text-sm font-medium leading-tight"
+              >Manuales de Mantenimiento</span
+            >
+          </a>
+          <a
+            href="javascript:void(0)"
+            class="btn-td flex flex-col items-center justify-center gap-2 px-3 py-4 md:py-5 rounded-xl text-white text-center no-underline"
+            onclick="goToFichas(event)"
+          >
+            <i class="fas fa-clipboard-list text-lg md:text-xl"></i>
+            <span class="text-[11px] md:text-sm font-medium leading-tight"
+              >Fichas Técnicas</span
+            >
+          </a>
+        </div>
+      </section>
+
+      <div class="sep w-full my-4 md:my-5"></div>
+
+      <!-- Redes Sociales -->
+      <section class="w-full anim-up mb-1" style="animation-delay: 0.3s">
+        <h3
+          class="font-heading font-semibold text-sm md:text-base text-td-text mb-3"
+        >
+          Redes Sociales
+        </h3>
+        <div class="flex justify-center gap-4 md:gap-5">
+          <a
+            href="https://instagram.com/toditico"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center text-white shadow-md"
+            aria-label="Instagram"
+          >
+            <i class="fab fa-instagram text-xl md:text-2xl"></i>
+          </a>
+          <a
+            href="https://facebook.com/toditico"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#1877f2] flex items-center justify-center text-white shadow-md"
+            aria-label="Facebook"
+          >
+            <i class="fab fa-facebook-f text-xl md:text-2xl"></i>
+          </a>
+          <a
+            href="https://wa.me/0000000000000"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#25d366] flex items-center justify-center text-white shadow-md"
+            aria-label="WhatsApp"
+          >
+            <i class="fab fa-whatsapp text-xl md:text-2xl"></i>
+          </a>
+          <a
+            href="https://tiktok.com/@toditico"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#010101] flex items-center justify-center text-white shadow-md"
+            aria-label="TikTok"
+          >
+            <i class="fab fa-tiktok text-xl md:text-2xl"></i>
+          </a>
+        </div>
+      </section>
+
+      <div class="sep w-full my-4 md:my-5"></div>
+
+      <!-- Contacto -->
+      <section class="w-full anim-up mb-6" style="animation-delay: 0.42s">
+        <div class="flex flex-col md:flex-row gap-3">
+          <a
+            href="mailto:admin@toditico.com"
+            class="flex-1 flex items-center justify-center gap-2.5 px-4 py-3 md:py-3.5 rounded-xl bg-td-text text-white text-sm md:text-base font-medium no-underline hover:bg-[#2a3545] transition-colors"
+            onclick="toast('Redirigiendo al administrador...','info')"
+          >
+            <i class="fas fa-user-shield"></i>
+            <span>Contactar al Administrador</span>
+          </a>
+          <a
+            href="https://wa.me/0000000000000?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20productos"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-1 flex items-center justify-center gap-2.5 px-4 py-3 md:py-3.5 rounded-xl bg-td-red text-white text-sm md:text-base font-medium no-underline hover:bg-td-red-dark transition-colors"
+            onclick="toast('Abriendo chat con la tienda...','info')"
+          >
+            <i class="fas fa-store"></i>
+            <span>Contactar con la Tienda</span>
+          </a>
+        </div>
+      </section>
+
+      <footer class="text-center anim-up" style="animation-delay: 0.54s">
+        <p
+          class="font-heading font-semibold text-sm md:text-base text-td-muted"
+        >
+          Toditico <span class="text-td-blue">energía limpia</span>
+        </p>
+      </footer>
+    </main>
+
+    <!-- ==================== VISTA FICHAS TÉCNICAS ==================== -->
+    <!-- OCULTA DIRECTAMENTE CON STYLE INLINE — esto funciona en cualquier entorno -->
+    <section
+      id="view-fichas"
+      style="display: none"
+      class="relative z-10 max-w-md md:max-w-2xl lg:max-w-3xl mx-auto px-5 pt-6 md:pt-10 pb-16"
+    >
+      <div class="flex items-center gap-3 mb-5">
+        <button
+          onclick="goMain()"
+          class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/40 backdrop-blur-sm shadow-sm border border-white/30 flex items-center justify-center hover:bg-white/60 transition-colors"
+          aria-label="Volver al inicio"
+        >
+          <i class="fas fa-arrow-left text-td-text text-sm md:text-base"></i>
+        </button>
+        <div>
+          <h2
+            class="font-heading font-bold text-xl md:text-2xl lg:text-3xl text-td-text leading-tight"
+          >
+            Fichas Técnicas
+          </h2>
+          <p class="text-xs md:text-sm text-td-muted font-light">
+            Manuales y especificaciones de productos
+          </p>
+        </div>
+      </div>
+
+      <div class="relative mb-5">
+        <i
+          class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-td-muted text-sm pointer-events-none"
+        ></i>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Buscar producto..."
+          class="w-full pl-11 pr-4 py-3 md:py-3.5 rounded-xl bg-white/40 backdrop-blur-sm border border-white/40 shadow-sm text-sm md:text-base font-body text-td-text placeholder:text-td-muted/40 focus:outline-none focus:ring-2 focus:ring-td-blue/25 focus:border-td-blue/40 transition-all"
+        />
+      </div>
+
+      <div id="products-container"></div>
+    </section>
+
+    <!-- ==================== BOTÓN VOLVER ARRIBA ==================== -->
+    <button
+      id="btn-top"
+      class="btn-top fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-td-blue text-white shadow-lg shadow-td-blue/25 flex items-center justify-center hover:bg-td-blue-dark transition-colors"
+      aria-label="Volver arriba"
+    >
+      <i class="fas fa-chevron-up text-sm"></i>
+    </button>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+      (function () {
+        "use strict";
+
+        /* ===================================================
+           PRODUCTOS
+        =================================================== */
+        var PRODUCTS = [
+          {
+            id: 1,
+            nombre: "Panel Solar Monocristalino 550W",
+            cat: "Paneles Solares",
+            pot: "550W",
+            eff: "21.3%",
+            file: "panel-mono-550w.pdf",
+            icon: "fa-solar-panel",
+          },
+          {
+            id: 2,
+            nombre: "Panel Solar Policristalino 450W",
+            cat: "Paneles Solares",
+            pot: "450W",
+            eff: "18.7%",
+            file: "panel-poli-450w.pdf",
+            icon: "fa-solar-panel",
+          },
+          {
+            id: 3,
+            nombre: "Panel Solar Monocristalino 400W",
+            cat: "Paneles Solares",
+            pot: "400W",
+            eff: "20.1%",
+            file: "panel-mono-400w.pdf",
+            icon: "fa-solar-panel",
+          },
+          {
+            id: 4,
+            nombre: "Inversor Híbrido 5kW",
+            cat: "Inversores",
+            pot: "5kW",
+            eff: "97.6%",
+            file: "inversor-hibrido-5kw.pdf",
+            icon: "fa-bolt",
+          },
+          {
+            id: 5,
+            nombre: "Inversor String 10kW",
+            cat: "Inversores",
+            pot: "10kW",
+            eff: "98.2%",
+            file: "inversor-string-10kw.pdf",
+            icon: "fa-bolt",
+          },
+          {
+            id: 6,
+            nombre: "Microinversor 1200W Dual",
+            cat: "Inversores",
+            pot: "1200W",
+            eff: "96.5%",
+            file: "microinversor-1200w.pdf",
+            icon: "fa-bolt",
+          },
+          {
+            id: 7,
+            nombre: "Batería de Litio 5.12kWh",
+            cat: "Almacenamiento",
+            pot: "5.12kWh",
+            eff: "95%",
+            file: "bateria-litio-512kwh.pdf",
+            icon: "fa-battery-full",
+          },
+          {
+            id: 8,
+            nombre: "Batería de Gel 200Ah 12V",
+            cat: "Almacenamiento",
+            pot: "200Ah",
+            eff: "85%",
+            file: "bateria-gel-200ah.pdf",
+            icon: "fa-battery-three-quarters",
+          },
+          {
+            id: 9,
+            nombre: "Estructura de Montaje para Techo",
+            cat: "Estructuras",
+            pot: "—",
+            eff: "—",
+            file: "estructura-techo.pdf",
+            icon: "fa-layer-group",
+          },
+          {
+            id: 10,
+            nombre: "Estructura de Montaje en Suelo",
+            cat: "Estructuras",
+            pot: "—",
+            eff: "—",
+            file: "estructura-suelo.pdf",
+            icon: "fa-layer-group",
+          },
+        ];
+
+        /* ===================================================
+           DOM
+        =================================================== */
+        var viewMain = document.getElementById("view-main");
+        var viewFichas = document.getElementById("view-fichas");
+        var productsBox = document.getElementById("products-container");
+        var searchInput = document.getElementById("search-input");
+        var btnTop = document.getElementById("btn-top");
+        var toastBox = document.getElementById("toast-box");
+        var sunEl = document.getElementById("sun-el");
+
+        /* ===================================================
+           NAVEGACIÓN SPA — usa style.display directo,
+           sin depender de clases CSS que pueden fallar
+           en file:// o con el CDN de Tailwind
+        =================================================== */
+        window.goToFichas = function (e) {
+          if (e) e.preventDefault();
+          viewMain.style.display = "none";
+          viewFichas.style.display = "block";
+          renderProducts(PRODUCTS);
+          searchInput.value = "";
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          try {
+            history.pushState({ view: "fichas" }, "", "#fichas-tecnicas");
+          } catch (err) {}
+          toast("Fichas técnicas de productos", "info");
+        };
+
+        window.goMain = function () {
+          viewFichas.style.display = "none";
+          viewMain.style.display = "flex";
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          try {
+            history.pushState({ view: "main" }, "", window.location.pathname);
+          } catch (err) {}
+        };
+
+        /* Botón atrás del navegador */
+        window.addEventListener("popstate", function () {
+          if (location.hash === "#fichas-tecnicas") {
+            viewMain.style.display = "none";
+            viewFichas.style.display = "block";
+            renderProducts(PRODUCTS);
+          } else {
+            viewFichas.style.display = "none";
+            viewMain.style.display = "flex";
+          }
+        });
+
+        /* Si se accede directo al hash */
+        if (location.hash === "#fichas-tecnicas") {
+          viewMain.style.display = "none";
+          viewFichas.style.display = "block";
+          renderProducts(PRODUCTS);
+        }
+
+        /* ===================================================
+           SOL — TRAYECTORIA CURVA
+        =================================================== */
+        function updateSun() {
+          var scrollH = document.body.scrollHeight - window.innerHeight;
+          var pct = scrollH > 0 ? Math.min(window.scrollY / scrollH, 1) : 0;
+
+          var vw = window.innerWidth;
+          var vh = window.innerHeight;
+          var isMobile = vw < 768;
+
+          var x = vw * 0.04 + pct * vw * 0.8;
+
+          var baseY, peakY;
+          if (isMobile) {
+            baseY = vh * 0.42;
+            peakY = vh * 0.02;
+          } else {
+            baseY = vh * 0.3;
+            peakY = vh * 0.02;
+          }
+          var y = baseY - (baseY - peakY) * Math.sin(pct * Math.PI);
+
+          var baseOpacity = isMobile ? 0.18 : 0.1;
+          var peakOpacity = isMobile ? 0.3 : 0.18;
+          var opacity =
+            baseOpacity + (peakOpacity - baseOpacity) * Math.sin(pct * Math.PI);
+
+          sunEl.style.transform = "translate(" + x + "px, " + y + "px)";
+          sunEl.style.opacity = opacity;
+        }
+
+        window.addEventListener(
+          "scroll",
+          function () {
+            updateSun();
+            if (window.scrollY > 280) {
+              btnTop.classList.add("show");
+            } else {
+              btnTop.classList.remove("show");
+            }
+          },
+          { passive: true }
+        );
+
+        window.addEventListener("resize", updateSun);
+        updateSun();
+
+        /* ===================================================
+           RENDERIZADO DE PRODUCTOS
+        =================================================== */
+        function renderProducts(list) {
+          if (!list.length) {
+            productsBox.innerHTML =
+              '<div class="text-center py-14">' +
+              '<i class="fas fa-search text-4xl text-td-muted/20 mb-3 block"></i>' +
+              '<p class="text-sm text-td-muted">No se encontraron productos</p></div>';
+            return;
+          }
+
+          var groups = {};
+          list.forEach(function (p) {
+            if (!groups[p.cat]) groups[p.cat] = [];
+            groups[p.cat].push(p);
+          });
+
+          var html = "";
+          var delay = 0;
+          Object.keys(groups).forEach(function (cat) {
+            html += '<div class="mb-5">';
+            html +=
+              '<h3 class="font-heading font-semibold text-xs md:text-sm text-td-blue uppercase tracking-widest mb-3 pl-1">' +
+              escHtml(cat) +
+              "</h3>";
+            groups[cat].forEach(function (p) {
+              var d = delay;
+              html +=
+                '<div class="prod-card rounded-xl border border-white/30 p-4 md:p-5 mb-2.5 flex items-center gap-3.5 anim-up" style="animation-delay:' +
+                d +
+                's;background:rgba(255,255,255,0.25)">' +
+                '<div class="w-11 h-11 md:w-13 md:h-13 rounded-lg bg-td-blue/10 flex items-center justify-center flex-shrink-0">' +
+                '<i class="fas ' +
+                p.icon +
+                ' text-td-blue text-lg"></i>' +
+                "</div>" +
+                '<div class="flex-1 min-w-0">' +
+                '<p class="font-body font-medium text-sm md:text-base text-td-text truncate">' +
+                escHtml(p.nombre) +
+                "</p>" +
+                '<p class="text-xs md:text-sm text-td-muted mt-0.5">Potencia: ' +
+                escHtml(p.pot) +
+                " &middot; Eficiencia: " +
+                escHtml(p.eff) +
+                "</p>" +
+                "</div>" +
+                '<a href="./downloads/fichas/' +
+                escAttr(p.file) +
+                '" download ' +
+                'class="flex-shrink-0 w-10 h-10 md:w-11 md:h-11 rounded-lg bg-td-blue text-white flex items-center justify-center hover:bg-td-blue-dark transition-colors" ' +
+                'data-toast="' +
+                escAttr(p.nombre) +
+                '" ' +
+                'onclick="trackDownload(event)" ' +
+                'aria-label="Descargar ficha de ' +
+                escAttr(p.nombre) +
+                '">' +
+                '<i class="fas fa-download text-sm"></i>' +
+                "</a>" +
+                "</div>";
+              delay += 0.05;
+            });
+            html += "</div>";
+          });
+
+          productsBox.innerHTML = html;
+        }
+
+        /* ===================================================
+           BÚSQUEDA
+        =================================================== */
+        searchInput.addEventListener("input", function () {
+          var q = this.value.toLowerCase().trim();
+          if (!q) {
+            renderProducts(PRODUCTS);
+            return;
+          }
+          var filtered = PRODUCTS.filter(function (p) {
+            return (
+              p.nombre.toLowerCase().indexOf(q) !== -1 ||
+              p.cat.toLowerCase().indexOf(q) !== -1 ||
+              p.pot.toLowerCase().indexOf(q) !== -1
+            );
+          });
+          renderProducts(filtered);
+        });
+
+        /* ===================================================
+           DESCARGAS
+        =================================================== */
+        window.trackDownload = function (e) {
+          e.preventDefault();
+          var link = e.currentTarget;
+          var name = link.getAttribute("data-toast") || "Archivo";
+          toast("Descargando: " + name, "success");
+          setTimeout(function () {
+            var a = document.createElement("a");
+            a.href = link.href;
+            a.download = "";
+            a.style.display = "none";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          }, 350);
+        };
+
+        /* ===================================================
+           TOASTS
+        =================================================== */
+        function toast(msg, type) {
+          type = type || "info";
+          var colors = {
+            success: "#059669",
+            info: "#0077b6",
+            error: "#dc2626",
+            warning: "#d97706",
+          };
+          var icons = {
+            success: "fa-check-circle",
+            info: "fa-info-circle",
+            error: "fa-times-circle",
+            warning: "fa-exclamation-triangle",
+          };
+
+          var el = document.createElement("div");
+          el.className =
+            "toast-in pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-xl shadow-xl text-sm font-body text-white max-w-xs";
+          el.style.background = colors[type] || colors.info;
+          el.innerHTML =
+            '<i class="fas ' +
+            (icons[type] || icons.info) +
+            '"></i><span>' +
+            escHtml(msg) +
+            "</span>";
+          toastBox.appendChild(el);
+
+          setTimeout(function () {
+            el.classList.remove("toast-in");
+            el.classList.add("toast-out");
+            setTimeout(function () {
+              el.remove();
+            }, 280);
+          }, 3200);
+        }
+        window.toast = toast;
+
+        /* ===================================================
+           VOLVER ARRIBA
+        =================================================== */
+        btnTop.addEventListener("click", function () {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        /* ===================================================
+           UTILIDADES
+        =================================================== */
+        function escHtml(str) {
+          var div = document.createElement("div");
+          div.textContent = str;
+          return div.innerHTML;
+        }
+        function escAttr(str) {
+          return str
+            .replace(/&/g, "&amp;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+        }
+      })();
+    </script>
+  </body>
+</html>
