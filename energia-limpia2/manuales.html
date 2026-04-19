@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Fichas técnicas y manuales - Toditico Energía Limpia"
+    />
+    <title>Manuales Técnicos - Toditico</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+      <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-button">
+      <i class="fas fa-arrow-left"></i> Volver
+    </a>
+
+    <!-- Main Container -->
+    <main class="container manuals-page">
+      <header class="header">
+        <h1 class="title">Fichas Técnicas y Manuales</h1>
+        <p class="description">
+          Encuentra toda la documentación técnica de nuestros productos
+        </p>
+      </header>
+
+      <!-- Search Bar -->
+      <section class="search-section">
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Buscar productos, modelos, especificaciones..."
+            aria-label="Buscar productos"
+          />
+          <button
+            id="clearSearch"
+            class="clear-search"
+            aria-label="Limpiar búsqueda"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- Filter Buttons -->
+      <section class="filter-section">
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-category="todos">
+            <i class="fas fa-th"></i> Todos
+          </button>
+          <button class="filter-btn" data-category="solar">
+            <i class="fas fa-solar-panel"></i> Solar
+          </button>
+          <button class="filter-btn" data-category="eolico">
+            <i class="fas fa-wind"></i> Eólico
+          </button>
+          <button class="filter-btn" data-category="inversores">
+            <i class="fas fa-bolt"></i> Inversores
+          </button>
+        </div>
+      </section>
+
+      <!-- Products Grid -->
+      <section class="products-section">
+        <div id="productsGrid" class="products-grid">
+          <!-- Products will be loaded dynamically -->
+        </div>
+        <div id="noResults" class="no-results" style="display: none">
+          <i class="fas fa-search"></i>
+          <p>No se encontraron productos que coincidan con tu búsqueda</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

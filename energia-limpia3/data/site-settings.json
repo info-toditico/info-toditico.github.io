@@ -1,0 +1,128 @@
+{
+  "branding": {
+    "brandName": "Toditico",
+    "brandTagline": "Energia Limpia",
+    "mainTitle": "Informacion General",
+    "accentTitle": "de Toditico",
+    "heroSubtitle": "Accede a catalogos, manuales tecnicos, fichas de productos y recursos para proyectos de energia solar, eolica e inversores.",
+    "footerText": "TODITICO ENERGIA LIMPIA",
+    "heroImagePath": "./assets/hero-bg.jpg",
+    "useImageLogo": false,
+    "logoPath": "./assets/logo.png",
+    "logoAlt": "Logo Toditico"
+  },
+  "downloads": [
+    {
+      "id": "downloadBtn1",
+      "titleId": "downloadBtn1Title",
+      "label": "Ficha Panel Bifacial",
+      "href": "./downloads/fichas/ficha_panel_bifacial_550w.pdf",
+      "download": true,
+      "toast": "Ficha Panel Bifacial"
+    },
+    {
+      "id": "downloadBtn2",
+      "titleId": "downloadBtn2Title",
+      "label": "Manuales de Mantenimiento",
+      "href": "#fichas-tecnicas",
+      "download": false,
+      "toast": "Navegando a fichas tecnicas"
+    },
+    {
+      "id": "downloadBtn3",
+      "titleId": "downloadBtn3Title",
+      "label": "Catalogo de Productos",
+      "href": "./downloads/TODITICO_CATALOGO_Energia_Limpia.xlsx",
+      "download": true,
+      "toast": "Catalogo de Productos"
+    },
+    {
+      "id": "downloadBtn4",
+      "titleId": "downloadBtn4Title",
+      "label": "Ficha Inversor Hibrido",
+      "href": "./downloads/fichas/ficha_inversor_hibrido_5kw.pdf",
+      "download": true,
+      "toast": "Ficha Inversor Hibrido"
+    }
+  ],
+  "social": {
+    "instagram": "https://instagram.com/toditico",
+    "facebook": "https://facebook.com/toditico",
+    "twitter": "https://x.com/toditico",
+    "linkedin": "https://www.linkedin.com/company/toditico",
+    "youtube": "https://www.youtube.com/@toditico"
+  },
+  "contact": {
+    "adminUrl": "mailto:admin@toditico.com",
+    "adminLabel": "Contactar Administrador",
+    "storeUrl": "mailto:tienda@toditico.com",
+    "storeLabel": "Contactar Tienda"
+  },
+  "products": [
+    {
+      "id": 1,
+      "nombre": "Panel Solar Monocristalino 400W",
+      "categoria": "solar",
+      "imagen": "./assets/product-placeholder.jpg",
+      "specs": [
+        { "label": "Potencia", "value": "400W" },
+        { "label": "Eficiencia", "value": "21.3%" },
+        { "label": "Voltaje", "value": "40V" },
+        { "label": "Tipo", "value": "Monocristalino" }
+      ],
+      "ficha": "./downloads/fichas/ficha_panel_mono_400w.pdf"
+    },
+    {
+      "id": 2,
+      "nombre": "Panel Solar Bifacial 550W",
+      "categoria": "solar",
+      "imagen": "./assets/product-placeholder.jpg",
+      "specs": [
+        { "label": "Potencia", "value": "550W" },
+        { "label": "Eficiencia", "value": "22.8%" },
+        { "label": "Voltaje", "value": "49.5V" },
+        { "label": "Tipo", "value": "Bifacial" }
+      ],
+      "ficha": "./downloads/fichas/ficha_panel_bifacial_550w.pdf"
+    },
+    {
+      "id": 3,
+      "nombre": "Aerogenerador Horizontal 3kW",
+      "categoria": "eolico",
+      "imagen": "./assets/product-placeholder.jpg",
+      "specs": [
+        { "label": "Potencia", "value": "3kW" },
+        { "label": "Viento inicio", "value": "3 m/s" },
+        { "label": "Diametro rotor", "value": "3.8m" },
+        { "label": "Tipo", "value": "Eje horizontal" }
+      ],
+      "ficha": "./downloads/fichas/ficha_aerogenerador_3kw.pdf"
+    },
+    {
+      "id": 4,
+      "nombre": "Inversor Hibrido 5kW",
+      "categoria": "inversores",
+      "imagen": "./assets/product-placeholder.jpg",
+      "specs": [
+        { "label": "Potencia", "value": "5kW" },
+        { "label": "Bateria", "value": "48V" },
+        { "label": "Eficiencia", "value": "97.6%" },
+        { "label": "Tipo", "value": "Hibrido" }
+      ],
+      "ficha": "./downloads/fichas/ficha_inversor_hibrido_5kw.pdf"
+    },
+    {
+      "id": 5,
+      "nombre": "Estructura de Montaje",
+      "categoria": "inversores",
+      "imagen": "./assets/product-placeholder.jpg",
+      "specs": [
+        { "label": "Aplicacion", "value": "Cubierta plana" },
+        { "label": "Material", "value": "Aluminio" },
+        { "label": "Compatibilidad", "value": "3 modulos" },
+        { "label": "Tipo", "value": "Estructura" }
+      ],
+      "ficha": "./downloads/fichas/ficha_estructura_montaje.pdf"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "branding": {
+    "mainTitle": "Informacion General de Toditico",
+    "subTitle": "Descargas de Energia Limpia",
+    "logoPath": "assets/logo.png",
+    "logoAlt": "Toditico Energia Limpia",
+    "footerText": "© 2026 Toditico Energia Limpia. Todos los derechos reservados."
+  },
+  "downloads": [
+    {
+      "id": "downloadBtn1",
+      "textId": "downloadBtn1Text",
+      "label": "Guia de Instalacion Solar",
+      "href": "assets/downloads/guia-instalacion-solar.pdf",
+      "download": true
+    },
+    {
+      "id": "downloadBtn2",
+      "textId": "downloadBtn2Text",
+      "label": "Manual de Mantenimiento Eolico",
+      "href": "manuales.html",
+      "download": false
+    },
+    {
+      "id": "downloadBtn3",
+      "textId": "downloadBtn3Text",
+      "label": "Catalogo de Productos Renovables",
+      "href": "assets/downloads/catalogo-productos.xlsx",
+      "download": true
+    },
+    {
+      "id": "downloadBtn4",
+      "textId": "downloadBtn4Text",
+      "label": "Normas Ambientales Aplicables",
+      "href": "assets/downloads/normas-ambientales.pdf",
+      "download": true
+    }
+  ],
+  "social": {
+    "instagram": "https://instagram.com/toditico",
+    "facebook": "https://facebook.com/toditico",
+    "youtube": "https://youtube.com/toditico",
+    "linkedin": "https://linkedin.com/company/toditico",
+    "whatsapp": "https://wa.me/573001234567"
+  },
+  "contact": {
+    "admin": {
+      "label": "Contactar al Administrador",
+      "email": "admin@toditico.com"
+    },
+    "store": {
+      "label": "Contactar con la Tienda",
+      "email": "tienda@toditico.com"
+    }
+  }
+}

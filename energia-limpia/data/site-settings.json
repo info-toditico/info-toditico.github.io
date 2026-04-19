@@ -1,0 +1,149 @@
+{
+  "branding": {
+    "brandName": "Toditico",
+    "brandTagline": "Energia Limpia",
+    "mainTitle": "Informacion General de Toditico",
+    "subTitle": "Energia Limpia",
+    "footerText": "Toditico energia limpia",
+    "useImageLogo": false,
+    "logoPath": "./assets/logo.png",
+    "logoAlt": "Logo Toditico",
+    "logoLetter": "T"
+  },
+  "downloads": [
+    {
+      "id": "downloadBtn1",
+      "textId": "downloadBtn1Text",
+      "label": "Guia de Instalacion Solar",
+      "href": "./downloads/guia-instalacion-solar.pdf",
+      "download": true,
+      "toast": "Guia de Instalacion Solar"
+    },
+    {
+      "id": "downloadBtn2",
+      "textId": "downloadBtn2Text",
+      "label": "Catalogo de Productos",
+      "href": "./downloads/TODITICO_CATÁLOGO_Energía_Limpia.xlsx",
+      "download": true,
+      "toast": "Catalogo de Productos"
+    },
+    {
+      "id": "downloadBtn3",
+      "textId": "downloadBtn3Text",
+      "label": "Manuales de Mantenimiento",
+      "href": "javascript:void(0)",
+      "download": false
+    },
+    {
+      "id": "downloadBtn4",
+      "textId": "downloadBtn4Text",
+      "label": "Fichas Tecnicas",
+      "href": "javascript:void(0)",
+      "download": false
+    }
+  ],
+  "social": {
+    "instagram": "https://instagram.com/toditico",
+    "facebook": "https://facebook.com/toditico",
+    "whatsapp": "https://wa.me/573001234567",
+    "tiktok": "https://tiktok.com/@toditico"
+  },
+  "contact": {
+    "adminEmail": "admin@toditico.com",
+    "adminLabel": "Contactar al Administrador",
+    "storeUrl": "https://wa.me/573001234567?text=Hola%2C%20quiero%20informacion%20sobre%20productos",
+    "storeLabel": "Contactar con la Tienda"
+  },
+  "products": [
+    {
+      "id": 1,
+      "nombre": "Panel Solar Monocristalino 550W",
+      "cat": "Paneles Solares",
+      "pot": "550W",
+      "eff": "21.3%",
+      "file": "panel-mono-550w.pdf",
+      "icon": "fa-solar-panel"
+    },
+    {
+      "id": 2,
+      "nombre": "Panel Solar Policristalino 450W",
+      "cat": "Paneles Solares",
+      "pot": "450W",
+      "eff": "18.7%",
+      "file": "panel-poli-450w.pdf",
+      "icon": "fa-solar-panel"
+    },
+    {
+      "id": 3,
+      "nombre": "Panel Solar Monocristalino 400W",
+      "cat": "Paneles Solares",
+      "pot": "400W",
+      "eff": "20.1%",
+      "file": "panel-mono-400w.pdf",
+      "icon": "fa-solar-panel"
+    },
+    {
+      "id": 4,
+      "nombre": "Inversor Hibrido 5kW",
+      "cat": "Inversores",
+      "pot": "5kW",
+      "eff": "97.6%",
+      "file": "inversor-hibrido-5kw.pdf",
+      "icon": "fa-bolt"
+    },
+    {
+      "id": 5,
+      "nombre": "Inversor String 10kW",
+      "cat": "Inversores",
+      "pot": "10kW",
+      "eff": "98.2%",
+      "file": "inversor-string-10kw.pdf",
+      "icon": "fa-bolt"
+    },
+    {
+      "id": 6,
+      "nombre": "Microinversor 1200W Dual",
+      "cat": "Inversores",
+      "pot": "1200W",
+      "eff": "96.5%",
+      "file": "microinversor-1200w.pdf",
+      "icon": "fa-bolt"
+    },
+    {
+      "id": 7,
+      "nombre": "Bateria de Litio 5.12kWh",
+      "cat": "Almacenamiento",
+      "pot": "5.12kWh",
+      "eff": "95%",
+      "file": "bateria-litio-512kwh.pdf",
+      "icon": "fa-battery-full"
+    },
+    {
+      "id": 8,
+      "nombre": "Bateria de Gel 200Ah 12V",
+      "cat": "Almacenamiento",
+      "pot": "200Ah",
+      "eff": "85%",
+      "file": "bateria-gel-200ah.pdf",
+      "icon": "fa-battery-three-quarters"
+    },
+    {
+      "id": 9,
+      "nombre": "Estructura de Montaje para Techo",
+      "cat": "Estructuras",
+      "pot": "-",
+      "eff": "-",
+      "file": "estructura-techo.pdf",
+      "icon": "fa-layer-group"
+    },
+    {
+      "id": 10,
+      "nombre": "Estructura de Montaje en Suelo",
+      "cat": "Estructuras",
+      "pot": "-",
+      "eff": "-",
+      "file": "estructura-suelo.pdf",
+      "icon": "fa-layer-group"
+    }
+  ]
+}

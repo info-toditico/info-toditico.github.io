@@ -1,0 +1,2505 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toditico | Energía Limpia</title>
+    <meta
+      name="description"
+      content="Toditico - Recursos de energía limpia. Catálogos, manuales y fichas técnicas de productos solares, eólicos e inversores."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: { extend: { fontFamily: { sans: ["Inter", "sans-serif"] } } },
+      };
+    </script>
+    <style>
+      /* ═══════════════════════════════════════
+           THEME VARIABLES
+        ═══════════════════════════════════════ */
+      :root {
+        --bg-primary: #eef2fa;
+        --bg-secondary: #dfe6f4;
+        --bg-card: #ffffff;
+        --bg-card-hover: #f4f7ff;
+        --bg-input: #e8ecf4;
+        --text-primary: #0f172a;
+        --text-secondary: #374151;
+        --text-muted: #6b7280;
+        --border-color: rgba(59, 130, 246, 0.2);
+        --border-card: rgba(0, 0, 0, 0.13);
+        --border-strong: rgba(0, 0, 0, 0.18);
+        --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.07);
+        --shadow-card-hover: 0 8px 32px rgba(59, 130, 246, 0.14);
+        --hero-overlay: rgba(15, 23, 42, 0.62);
+        --nav-bg: rgba(238, 242, 250, 0.92);
+        --toast-bg: #ffffff;
+        --toast-text: #0f172a;
+        --scrollbar-track: #e2e8f0;
+        --scrollbar-thumb: #94a3b8;
+        --footer-sky-top: #7dd3fc;
+        --footer-sky-bottom: #bae6fd;
+        --footer-ground: #1e3a5f;
+        --footer-ground-light: #2a5080;
+        --footer-structure: #1a3050;
+        --footer-panel-fill: #1a2d45;
+        --footer-panel-grid: rgba(255, 255, 255, 0.15);
+        --footer-blade: #2a5a78;
+        --footer-sun: #fbbf24;
+        --footer-cloud: rgba(255, 255, 255, 0.7);
+      }
+      .dark {
+        --bg-primary: #030712;
+        --bg-secondary: #0a1120;
+        --bg-card: rgba(255, 255, 255, 0.04);
+        --bg-card-hover: rgba(255, 255, 255, 0.08);
+        --bg-input: rgba(255, 255, 255, 0.06);
+        --text-primary: #f8fafc;
+        --text-secondary: #cbd5e1;
+        --text-muted: #64748b;
+        --border-color: rgba(59, 130, 246, 0.18);
+        --border-card: rgba(255, 255, 255, 0.08);
+        --border-strong: rgba(255, 255, 255, 0.15);
+        --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
+        --shadow-card-hover: 0 12px 40px rgba(59, 130, 246, 0.15);
+        --hero-overlay: rgba(3, 7, 18, 0.72);
+        --nav-bg: rgba(3, 7, 18, 0.88);
+        --toast-bg: #1e293b;
+        --toast-text: #f1f5f9;
+        --scrollbar-track: #0f172a;
+        --scrollbar-thumb: #334155;
+        --footer-sky-top: #0f172a;
+        --footer-sky-bottom: #1e3a5f;
+        --footer-ground: #0a1628;
+        --footer-ground-light: #0f1f35;
+        --footer-structure: #3a6a8a;
+        --footer-panel-fill: #0d1f35;
+        --footer-panel-grid: rgba(255, 255, 255, 0.08);
+        --footer-blade: #6aacd4;
+        --footer-sun: #fbbf24;
+        --footer-cloud: rgba(255, 255, 255, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        transition: background 0.4s ease, color 0.4s ease;
+        overflow-x: hidden;
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb);
+        border-radius: 4px;
+      }
+
+      /* ═══ ANIMATIONS ═══ */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+      @keyframes particle-rise {
+        0% {
+          transform: translateY(0) scale(1);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.6;
+        }
+        90% {
+          opacity: 0.2;
+        }
+        100% {
+          transform: translateY(-100vh) scale(0.3);
+          opacity: 0;
+        }
+      }
+      @keyframes toast-in {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      @keyframes toast-out {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+      }
+      .animate-fade-in-up {
+        animation: fadeInUp 0.8s ease forwards;
+      }
+
+      /* ═══ SCROLL REVEAL ═══ */
+      .reveal {
+        transition: opacity 0.7s ease, transform 0.7s ease;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal.reveal-hidden {
+        opacity: 0;
+        transform: translateY(35px);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: rgba(96, 165, 250, 0.5);
+        animation: particle-rise linear infinite;
+        pointer-events: none;
+      }
+
+      /* ═══ NAVBAR ═══ */
+      .navbar {
+        background: var(--nav-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-card);
+        transition: background 0.4s ease, border-color 0.4s ease;
+      }
+
+      /* ═══ THEME SWITCH — Control segmentado ═══ */
+      .theme-switch {
+        display: flex;
+        background: var(--bg-input);
+        border: 1px solid var(--border-card);
+        border-radius: 0.75rem;
+        padding: 3px;
+        gap: 2px;
+      }
+      .theme-switch-btn {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 14px;
+        border-radius: 0.6rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        font-family: "Inter", sans-serif;
+      }
+      .theme-switch-btn:hover {
+        color: var(--text-primary);
+      }
+      .theme-switch-btn.active {
+        background: linear-gradient(135deg, #2563eb, #0ea5e9);
+        color: #ffffff;
+        box-shadow: 0 2px 10px rgba(37, 99, 235, 0.35);
+      }
+
+      /* Floating theme toggle */
+      .floating-theme {
+        position: fixed;
+        bottom: 2rem;
+        left: 2rem;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        gap: 0;
+        border-radius: 2rem;
+        overflow: hidden;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(20px);
+        transition: all 0.35s ease;
+        border: 1px solid var(--border-card);
+      }
+      .floating-theme.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .floating-theme-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background: var(--bg-card);
+        color: var(--text-muted);
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 0;
+      }
+      .floating-theme-btn:hover {
+        color: var(--text-primary);
+      }
+      .floating-theme-btn.active {
+        background: linear-gradient(135deg, #2563eb, #0ea5e9);
+        color: #ffffff;
+      }
+
+      /* ═══ HERO ═══ */
+      .hero-section {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background-image: var(--hero-image, url("./assets/hero-bg.jpg"));
+        background-size: cover;
+        background-position: center;
+        filter: saturate(0.7);
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: var(--hero-overlay);
+        transition: background 0.4s ease;
+      }
+      .hero-overlay::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 40%;
+        background: linear-gradient(to top, var(--bg-primary), transparent);
+        pointer-events: none;
+      }
+
+      .section-bg {
+        background: var(--bg-primary);
+        transition: background 0.4s ease;
+      }
+      .section-bg-alt {
+        background: var(--bg-secondary);
+        transition: background 0.4s ease;
+      }
+
+      /* ═══ DOWNLOAD BUTTONS — Mejorado contraste ═══ */
+      .btn-download {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 2rem 1.5rem;
+        border-radius: 1.25rem;
+        border: 1.5px solid var(--border-strong);
+        background: var(--bg-card);
+        color: var(--text-primary);
+        text-decoration: none;
+        transition: all 0.35s ease;
+        overflow: hidden;
+        box-shadow: var(--shadow-card);
+      }
+      .btn-download::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, #2563eb, #0ea5e9);
+        opacity: 0;
+        transition: opacity 0.35s ease;
+      }
+      .btn-download:hover::before {
+        opacity: 1;
+      }
+      .btn-download:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(37, 99, 235, 0.3);
+        border-color: transparent;
+      }
+      .btn-download:hover .btn-icon,
+      .btn-download:hover .btn-title,
+      .btn-download:hover .btn-desc {
+        position: relative;
+        z-index: 1;
+        color: #ffffff;
+      }
+      .btn-download:hover .btn-desc {
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .btn-download .btn-icon {
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #2563eb, #0ea5e9);
+        color: #ffffff;
+        transition: all 0.35s ease;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+      }
+      .btn-download:hover .btn-icon {
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: none;
+      }
+      .btn-title {
+        font-weight: 600;
+        font-size: 1rem;
+        text-align: center;
+        transition: color 0.35s ease;
+      }
+      .btn-desc {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        text-align: center;
+        transition: color 0.35s ease;
+      }
+
+      /* ═══ FILTER PILLS ═══ */
+      .filter-pill {
+        padding: 0.5rem 1.25rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: 1.5px solid var(--border-strong);
+        background: var(--bg-card);
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: all 0.25s ease;
+        white-space: nowrap;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+      }
+      .filter-pill:hover {
+        border-color: var(--border-color);
+        color: var(--text-primary);
+      }
+      .filter-pill.active {
+        background: linear-gradient(135deg, #2563eb, #0ea5e9);
+        color: #ffffff;
+        border-color: transparent;
+        box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3);
+      }
+
+      /* ═══ SEARCH ═══ */
+      .search-input {
+        background: var(--bg-card);
+        border: 1.5px solid var(--border-strong);
+        border-radius: 0.875rem;
+        padding: 0.875rem 1rem 0.875rem 3rem;
+        color: var(--text-primary);
+        font-size: 0.95rem;
+        width: 100%;
+        transition: all 0.3s ease;
+        outline: none;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+      }
+      .search-input::placeholder {
+        color: var(--text-muted);
+      }
+      .search-input:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+      }
+
+      /* ═══ PRODUCT CARD ═══ */
+      .product-card {
+        background: var(--bg-card);
+        border: 1.5px solid var(--border-strong);
+        border-radius: 1.25rem;
+        overflow: hidden;
+        box-shadow: var(--shadow-card);
+        transition: all 0.4s ease;
+      }
+      .product-card:hover {
+        background: var(--bg-card-hover);
+        box-shadow: var(--shadow-card-hover);
+        transform: translateY(-6px);
+        border-color: var(--border-color);
+      }
+      .product-card .card-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .product-card:hover .card-img {
+        transform: scale(1.05);
+      }
+      .product-card .card-body {
+        padding: 1.25rem;
+      }
+
+      /* ═══ BADGES ═══ */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.3rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        backdrop-filter: blur(8px);
+      }
+      .badge-solar {
+        background: rgba(245, 158, 11, 0.9);
+        color: #ffffff;
+      }
+      .badge-eolico {
+        background: rgba(14, 165, 233, 0.9);
+        color: #ffffff;
+      }
+      .badge-inversores {
+        background: rgba(139, 92, 246, 0.9);
+        color: #ffffff;
+      }
+
+      /* ═══ BOTÓN FICHA ═══ */
+      .btn-ficha {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1.25rem;
+        border-radius: 0.75rem;
+        font-size: 0.8rem;
+        font-weight: 500;
+        background: linear-gradient(135deg, #2563eb, #0ea5e9);
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+      }
+      .btn-ficha:hover {
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+        transform: translateY(-2px);
+      }
+
+      /* ═══ SOCIAL BUTTONS — Mejorado contraste ═══ */
+      .social-btn {
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 1rem;
+        border: 1.5px solid var(--border-strong);
+        background: var(--bg-card);
+        color: var(--text-secondary);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        text-decoration: none;
+        box-shadow: var(--shadow-card);
+      }
+      .social-btn:hover {
+        background: linear-gradient(135deg, #2563eb, #0ea5e9);
+        color: #ffffff;
+        border-color: transparent;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+      }
+
+      /* ═══ CONTACT CARD — Mejorado contraste ═══ */
+      .contact-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        border: 1.5px solid var(--border-strong);
+        background: var(--bg-card);
+        text-decoration: none;
+        color: var(--text-primary);
+        transition: all 0.35s ease;
+        box-shadow: var(--shadow-card);
+      }
+      .contact-card:hover {
+        background: var(--bg-card-hover);
+        border-color: var(--border-color);
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-card-hover);
+      }
+      .contact-card .contact-icon {
+        width: 52px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 1rem;
+        background: linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.12),
+          rgba(14, 165, 233, 0.08)
+        );
+        color: #2563eb;
+        flex-shrink: 0;
+        transition: all 0.35s ease;
+      }
+      .contact-card:hover .contact-icon {
+        background: linear-gradient(135deg, #2563eb, #0ea5e9);
+        color: #ffffff;
+      }
+
+      /* ═══ TOAST ═══ */
+      .toast {
+        padding: 0.875rem 1.25rem;
+        border-radius: 0.75rem;
+        background: var(--toast-bg);
+        color: var(--toast-text);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+        border: 1px solid var(--border-card);
+        font-size: 0.875rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        animation: toast-in 0.35s ease forwards;
+        max-width: 360px;
+      }
+      .toast-exit {
+        animation: toast-out 0.3s ease forwards;
+      }
+
+      /* ═══ BACK TO TOP ═══ */
+      .back-to-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #2563eb, #0ea5e9);
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: none;
+        box-shadow: 0 4px 20px rgba(37, 99, 235, 0.35);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(20px);
+        transition: all 0.35s ease;
+        z-index: 50;
+      }
+      .back-to-top.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .back-to-top:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 30px rgba(37, 99, 235, 0.45);
+      }
+
+      /* ═══ MOBILE MENU ═══ */
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: var(--bg-secondary);
+        border-left: 1px solid var(--border-card);
+        z-index: 100;
+        transition: right 0.35s ease, background 0.4s ease;
+        padding: 2rem;
+      }
+      .mobile-menu.open {
+        right: 0;
+      }
+      .mobile-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 99;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.35s ease;
+      }
+      .mobile-overlay.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .no-results {
+        text-align: center;
+        padding: 4rem 2rem;
+        color: var(--text-muted);
+      }
+
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 4px;
+        border-radius: 2px;
+        background: linear-gradient(135deg, #2563eb, #0ea5e9);
+        margin-top: 0.75rem;
+      }
+      .section-title-center::after {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .spec-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.4rem 0;
+        border-bottom: 1px solid var(--border-card);
+        font-size: 0.8rem;
+      }
+      .spec-item:last-child {
+        border-bottom: none;
+      }
+      .spec-label {
+        color: var(--text-muted);
+      }
+      .spec-value {
+        color: var(--text-primary);
+        font-weight: 500;
+      }
+
+      /* Hamburger button */
+      .hamburger-btn {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.75rem;
+        border: 1.5px solid var(--border-card);
+        background: var(--bg-card);
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .hamburger-btn:hover {
+        background: var(--bg-card-hover);
+        border-color: var(--border-color);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- TOAST CONTAINER -->
+    <div
+      id="toast-container"
+      class="fixed top-6 right-6 z-[200] flex flex-col gap-3"
+    ></div>
+
+    <!-- MOBILE OVERLAY -->
+    <div
+      id="mobile-overlay"
+      class="mobile-overlay"
+      onclick="closeMobileMenu()"
+    ></div>
+
+    <!-- MOBILE MENU -->
+    <nav id="mobile-menu" class="mobile-menu">
+      <div class="flex justify-between items-center mb-8">
+        <span class="text-lg font-semibold" style="color: var(--text-primary)"
+          >Menú</span
+        >
+        <button
+          onclick="closeMobileMenu()"
+          class="hamburger-btn"
+          aria-label="Cerrar menú"
+        >
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="flex flex-col gap-1 mb-6">
+        <a
+          href="#inicio"
+          onclick="closeMobileMenu()"
+          class="block px-4 py-3 rounded-lg text-sm font-medium"
+          style="
+            color: var(--text-secondary);
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            margin-bottom: 4px;
+          "
+          >Inicio</a
+        >
+        <a
+          href="#descargas"
+          onclick="closeMobileMenu()"
+          class="block px-4 py-3 rounded-lg text-sm font-medium"
+          style="
+            color: var(--text-secondary);
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            margin-bottom: 4px;
+          "
+          >Descargas</a
+        >
+        <a
+          href="#fichas-tecnicas"
+          onclick="closeMobileMenu()"
+          class="block px-4 py-3 rounded-lg text-sm font-medium"
+          style="
+            color: var(--text-secondary);
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            margin-bottom: 4px;
+          "
+          >Fichas Técnicas</a
+        >
+        <a
+          href="#contacto"
+          onclick="closeMobileMenu()"
+          class="block px-4 py-3 rounded-lg text-sm font-medium"
+          style="
+            color: var(--text-secondary);
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            margin-bottom: 4px;
+          "
+          >Contacto</a
+        >
+      </div>
+      <!-- Theme switch in mobile menu -->
+      <div class="pt-6" style="border-top: 1px solid var(--border-card)">
+        <p
+          class="text-xs font-medium mb-3 uppercase tracking-wider"
+          style="color: var(--text-muted)"
+        >
+          Apariencia
+        </p>
+        <div class="theme-switch w-full">
+          <button
+            class="theme-switch-btn active flex-1 justify-center"
+            data-theme="dark"
+            onclick="setTheme('dark'); closeMobileMenu();"
+          >
+            <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+            <span>Oscuro</span>
+          </button>
+          <button
+            class="theme-switch-btn flex-1 justify-center"
+            data-theme="light"
+            onclick="setTheme('light'); closeMobileMenu();"
+          >
+            <i data-lucide="sun" class="w-3.5 h-3.5"></i>
+            <span>Claro</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ═════════════════ NAVBAR ═════════════════ -->
+    <header class="navbar fixed top-0 left-0 right-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-3"
+      >
+        <!-- Logo -->
+        <a href="#inicio" class="flex items-center gap-2.5 flex-shrink-0">
+          <div
+            id="brandLogoContainer"
+            class="w-9 h-9 rounded-lg flex items-center justify-center"
+            style="background: linear-gradient(135deg, #2563eb, #0ea5e9)"
+          >
+            <i data-lucide="zap" class="w-4.5 h-4.5 text-white"></i>
+          </div>
+          <div>
+            <span
+              id="brandName"
+              class="text-base font-semibold tracking-tight"
+              style="color: var(--text-primary)"
+              >Toditico</span
+            >
+            <span
+              id="brandTagline"
+              class="hidden sm:block text-[9px] uppercase tracking-widest font-medium"
+              style="color: var(--text-muted)"
+              >Energía Limpia</span
+            >
+          </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden lg:flex items-center gap-1">
+          <a
+            href="#inicio"
+            class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-[var(--bg-card)]"
+            style="color: var(--text-secondary)"
+            >Inicio</a
+          >
+          <a
+            href="#descargas"
+            class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-[var(--bg-card)]"
+            style="color: var(--text-secondary)"
+            >Descargas</a
+          >
+          <a
+            href="#fichas-tecnicas"
+            class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-[var(--bg-card)]"
+            style="color: var(--text-secondary)"
+            >Fichas Técnicas</a
+          >
+          <a
+            href="#contacto"
+            class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-[var(--bg-card)]"
+            style="color: var(--text-secondary)"
+            >Contacto</a
+          >
+        </nav>
+
+        <!-- Theme Switch (Desktop) -->
+        <div class="hidden sm:flex theme-switch">
+          <button
+            class="theme-switch-btn active"
+            data-theme="dark"
+            onclick="setTheme('dark')"
+          >
+            <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+            <span>Oscuro</span>
+          </button>
+          <button
+            class="theme-switch-btn"
+            data-theme="light"
+            onclick="setTheme('light')"
+          >
+            <i data-lucide="sun" class="w-3.5 h-3.5"></i>
+            <span>Claro</span>
+          </button>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <button
+          onclick="openMobileMenu()"
+          class="hamburger-btn sm:hidden"
+          aria-label="Abrir menú"
+        >
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- ═════════════════ HERO ═════════════════ -->
+    <section id="inicio" class="hero-section">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div
+        id="hero-particles"
+        class="absolute inset-0 overflow-hidden pointer-events-none"
+      ></div>
+      <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+        <div
+          class="animate-fade-in-up"
+          style="animation-delay: 0.2s; opacity: 0"
+        >
+          <div
+            id="heroPill"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium tracking-wide mb-8"
+            style="
+              background: rgba(59, 130, 246, 0.15);
+              color: #60a5fa;
+              border: 1px solid rgba(59, 130, 246, 0.25);
+            "
+          >
+            <i data-lucide="leaf" class="w-3.5 h-3.5"></i>
+            SOLUCIONES ENERGÉTICAS SOSTENIBLES
+          </div>
+        </div>
+        <h1
+          class="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-[1.08] mb-6 animate-fade-in-up"
+          style="animation-delay: 0.4s; opacity: 0; color: #ffffff"
+        >
+          <span id="heroTitleMain">Información General</span><br />
+          <span
+            id="heroTitleAccent"
+            style="
+              background: linear-gradient(135deg, #60a5fa, #38bdf8);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+            "
+            >de Toditico</span
+          >
+        </h1>
+        <p
+          id="heroSubtitle"
+          class="text-base sm:text-lg md:text-xl font-light leading-relaxed mb-10 max-w-2xl mx-auto animate-fade-in-up"
+          style="
+            animation-delay: 0.6s;
+            opacity: 0;
+            color: rgba(255, 255, 255, 0.7);
+          "
+        >
+          Accede a catálogos, manuales técnicos, fichas de productos y
+          normativas ambientales para proyectos de energía solar, eólica y
+          sistemas de inversores.
+        </p>
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up"
+          style="animation-delay: 0.8s; opacity: 0"
+        >
+          <a
+            href="#descargas"
+            class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-white text-sm transition-all hover:-translate-y-0.5"
+            style="
+              background: linear-gradient(135deg, #2563eb, #0ea5e9);
+              box-shadow: 0 8px 30px rgba(37, 99, 235, 0.35);
+            "
+          >
+            <i data-lucide="download" class="w-4 h-4"></i>
+            Explorar Recursos
+          </a>
+          <a
+            href="#fichas-tecnicas"
+            class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-medium text-sm transition-all hover:-translate-y-0.5"
+            style="
+              background: rgba(255, 255, 255, 0.1);
+              color: rgba(255, 255, 255, 0.9);
+              border: 1px solid rgba(255, 255, 255, 0.2);
+              backdrop-filter: blur(8px);
+            "
+          >
+            <i data-lucide="file-text" class="w-4 h-4"></i>
+            Fichas Técnicas
+          </a>
+        </div>
+      </div>
+      <div
+        class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-fade-in-up"
+        style="animation-delay: 1.2s; opacity: 0"
+      >
+        <div
+          class="flex flex-col items-center gap-2"
+          style="color: rgba(255, 255, 255, 0.4)"
+        >
+          <span class="text-[10px] uppercase tracking-widest font-medium"
+            >Scroll</span
+          >
+          <div
+            class="w-5 h-8 rounded-full border-2 flex justify-center pt-1.5"
+            style="border-color: rgba(255, 255, 255, 0.3)"
+          >
+            <div
+              class="w-1 h-2 rounded-full bg-white"
+              style="animation: float 2s ease-in-out infinite"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ DESCARGAS ═════════════════ -->
+    <section id="descargas" class="section-bg py-24 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16 reveal">
+          <h2
+            class="section-title section-title-center text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight"
+            style="color: var(--text-primary)"
+          >
+            Descargas de Energía Limpia
+          </h2>
+          <p
+            class="mt-6 text-base font-light max-w-xl mx-auto"
+            style="color: var(--text-secondary)"
+          >
+            Todos los recursos que necesitas para tus proyectos de energías
+            renovables en un solo lugar.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <a
+            id="downloadBtn1"
+            href="guia_instalacion_solar.pdf"
+            download
+            class="btn-download reveal reveal-delay-1"
+            onclick="handleDownload(event,'Guía de Instalación Solar')"
+          >
+            <div class="btn-icon">
+              <i data-lucide="sun" class="w-6 h-6"></i>
+            </div>
+            <span id="downloadBtn1Title" class="btn-title">Guía de Instalación Solar</span>
+            <span class="btn-desc">PDF • Paso a paso</span>
+          </a>
+          <a
+            id="downloadBtn2"
+            href="#fichas-tecnicas"
+            class="btn-download reveal reveal-delay-2"
+            onclick="showToast('Navegando a fichas técnicas...','info')"
+          >
+            <div class="btn-icon">
+              <i data-lucide="wrench" class="w-6 h-6"></i>
+            </div>
+            <span id="downloadBtn2Title" class="btn-title">Manuales de Mantenimiento</span>
+            <span class="btn-desc">Fichas técnicas online</span>
+          </a>
+          <a
+            id="downloadBtn3"
+            href="catalogo_productos.xlsx"
+            download
+            class="btn-download reveal reveal-delay-3"
+            onclick="handleDownload(event,'Catálogo de Productos')"
+          >
+            <div class="btn-icon">
+              <i data-lucide="book-open" class="w-6 h-6"></i>
+            </div>
+            <span id="downloadBtn3Title" class="btn-title">Catálogo de Productos</span>
+            <span class="btn-desc">Excel • Lista completa</span>
+          </a>
+          <a
+            id="downloadBtn4"
+            href="normativas_ambientales.pdf"
+            download
+            class="btn-download reveal reveal-delay-4"
+            onclick="handleDownload(event,'Normativas Ambientales')"
+          >
+            <div class="btn-icon">
+              <i data-lucide="shield-check" class="w-6 h-6"></i>
+            </div>
+            <span id="downloadBtn4Title" class="btn-title">Normativas Ambientales</span>
+            <span class="btn-desc">PDF • Regulaciones vigentes</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ FICHAS TÉCNICAS ═════════════════ -->
+    <section id="fichas-tecnicas" class="section-bg-alt py-24 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12 reveal">
+          <h2
+            class="section-title section-title-center text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight"
+            style="color: var(--text-primary)"
+          >
+            Fichas Técnicas
+          </h2>
+          <p
+            class="mt-6 text-base font-light max-w-xl mx-auto"
+            style="color: var(--text-secondary)"
+          >
+            Consulta las especificaciones detalladas de todos nuestros productos
+            energéticos.
+          </p>
+        </div>
+        <div class="reveal mb-10">
+          <div
+            class="flex flex-col sm:flex-row gap-4 items-center justify-between"
+          >
+            <div class="flex gap-2 flex-wrap justify-center">
+              <button
+                class="filter-pill active"
+                data-filter="todos"
+                onclick="setFilter('todos',this)"
+              >
+                <span class="flex items-center gap-1.5"
+                  ><i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+                  Todos</span
+                >
+              </button>
+              <button
+                class="filter-pill"
+                data-filter="solar"
+                onclick="setFilter('solar',this)"
+              >
+                <span class="flex items-center gap-1.5"
+                  ><i data-lucide="sun" class="w-3.5 h-3.5"></i> Solar</span
+                >
+              </button>
+              <button
+                class="filter-pill"
+                data-filter="eolico"
+                onclick="setFilter('eolico',this)"
+              >
+                <span class="flex items-center gap-1.5"
+                  ><i data-lucide="wind" class="w-3.5 h-3.5"></i> Eólico</span
+                >
+              </button>
+              <button
+                class="filter-pill"
+                data-filter="inversores"
+                onclick="setFilter('inversores',this)"
+              >
+                <span class="flex items-center gap-1.5"
+                  ><i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+                  Inversores</span
+                >
+              </button>
+            </div>
+            <div class="relative w-full sm:w-auto sm:min-w-[280px]">
+              <i
+                data-lucide="search"
+                class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+                style="color: var(--text-muted)"
+              ></i>
+              <input
+                type="text"
+                id="search-input"
+                class="search-input"
+                placeholder="Buscar producto..."
+                oninput="handleSearch(this.value)"
+                aria-label="Buscar productos"
+              />
+              <button
+                id="search-clear"
+                class="absolute right-3 top-1/2 -translate-y-1/2 hidden p-1 rounded cursor-pointer"
+                onclick="clearSearch()"
+                aria-label="Limpiar"
+                style="background: none; border: none"
+              >
+                <i
+                  data-lucide="x"
+                  class="w-4 h-4"
+                  style="color: var(--text-muted)"
+                ></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="reveal mb-6">
+          <p
+            id="product-count"
+            class="text-sm font-medium"
+            style="color: var(--text-muted)"
+          >
+            Mostrando 11 productos
+          </p>
+        </div>
+        <div
+          id="product-grid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        ></div>
+        <div id="no-results" class="no-results hidden">
+          <div
+            class="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4"
+            style="
+              background: var(--bg-card);
+              border: 1.5px solid var(--border-card);
+              box-shadow: var(--shadow-card);
+            "
+          >
+            <i
+              data-lucide="search-x"
+              class="w-7 h-7"
+              style="color: var(--text-muted)"
+            ></i>
+          </div>
+          <p
+            class="text-lg font-medium mb-1"
+            style="color: var(--text-secondary)"
+          >
+            Sin resultados
+          </p>
+          <p class="text-sm" style="color: var(--text-muted)">
+            Intenta con otra búsqueda o cambia el filtro de categoría.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ REDES SOCIALES ═════════════════ -->
+    <section class="section-bg py-24 px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="reveal">
+          <h2
+            class="section-title section-title-center text-3xl sm:text-4xl font-bold tracking-tight"
+            style="color: var(--text-primary)"
+          >
+            Redes Sociales
+          </h2>
+          <p
+            class="mt-6 text-base font-light max-w-md mx-auto mb-10"
+            style="color: var(--text-secondary)"
+          >
+            Síguenos para estar al día con las novedades del sector.
+          </p>
+        </div>
+        <div class="flex justify-center gap-4 flex-wrap reveal">
+          <a
+            id="socialInstagram"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn"
+            aria-label="Instagram"
+            onclick="showToast('Abriendo Instagram...','info')"
+            ><i data-lucide="instagram" class="w-5 h-5"></i
+          ></a>
+          <a
+            id="socialFacebook"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn"
+            aria-label="Facebook"
+            onclick="showToast('Abriendo Facebook...','info')"
+            ><i data-lucide="facebook" class="w-5 h-5"></i
+          ></a>
+          <a
+            id="socialTwitter"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn"
+            aria-label="Twitter"
+            onclick="showToast('Abriendo Twitter...','info')"
+            ><i data-lucide="twitter" class="w-5 h-5"></i
+          ></a>
+          <a
+            id="socialLinkedin"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn"
+            aria-label="LinkedIn"
+            onclick="showToast('Abriendo LinkedIn...','info')"
+            ><i data-lucide="linkedin" class="w-5 h-5"></i
+          ></a>
+          <a
+            id="socialYoutube"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn"
+            aria-label="YouTube"
+            onclick="showToast('Abriendo YouTube...','info')"
+            ><i data-lucide="youtube" class="w-5 h-5"></i
+          ></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ CONTACTO ═════════════════ -->
+    <section id="contacto" class="section-bg-alt py-24 px-6">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12 reveal">
+          <h2
+            class="section-title section-title-center text-3xl sm:text-4xl font-bold tracking-tight"
+            style="color: var(--text-primary)"
+          >
+            Contáctanos
+          </h2>
+          <p
+            class="mt-6 text-base font-light max-w-md mx-auto"
+            style="color: var(--text-secondary)"
+          >
+            ¿Tienes dudas? Estamos aquí para ayudarte con tu proyecto
+            energético.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 reveal">
+          <a
+            id="contactAdmin"
+            href="mailto:admin@toditico.com"
+            class="contact-card"
+            onclick="showToast('Abriendo cliente de correo...','info')"
+          >
+            <div class="contact-icon">
+              <i data-lucide="user-round" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <p
+                id="contactAdminLabel"
+                class="font-semibold text-sm"
+                style="color: var(--text-primary)"
+              >
+                Contactar Administrador
+              </p>
+              <p class="text-xs mt-0.5" style="color: var(--text-muted)">
+                Soporte y consultas
+              </p>
+            </div>
+            <i
+              data-lucide="chevron-right"
+              class="w-4 h-4 ml-auto flex-shrink-0"
+              style="color: var(--text-muted)"
+            ></i>
+          </a>
+          <a
+            id="contactStore"
+            href="mailto:tienda@toditico.com"
+            class="contact-card"
+            onclick="showToast('Abriendo cliente de correo...','info')"
+          >
+            <div class="contact-icon">
+              <i data-lucide="store" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <p
+                id="contactStoreLabel"
+                class="font-semibold text-sm"
+                style="color: var(--text-primary)"
+              >
+                Contactar Tienda
+              </p>
+              <p class="text-xs mt-0.5" style="color: var(--text-muted)">
+                Ventas y cotizaciones
+              </p>
+            </div>
+            <i
+              data-lucide="chevron-right"
+              class="w-4 h-4 ml-auto flex-shrink-0"
+              style="color: var(--text-muted)"
+            ></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ FOOTER SVG ═════════════════ -->
+    <footer class="relative overflow-hidden">
+      <svg
+        class="w-full block"
+        viewBox="0 0 1440 340"
+        preserveAspectRatio="xMidYMax slice"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" style="stop-color: var(--footer-sky-top)" />
+            <stop offset="100%" style="stop-color: var(--footer-sky-bottom)" />
+          </linearGradient>
+        </defs>
+        <rect width="1440" height="340" fill="url(#skyGrad)" />
+        <circle
+          cx="1200"
+          cy="70"
+          r="40"
+          fill="var(--footer-sun)"
+          opacity="0.8"
+        />
+        <circle
+          cx="1200"
+          cy="70"
+          r="55"
+          fill="var(--footer-sun)"
+          opacity="0.15"
+        />
+        <g fill="var(--footer-cloud)">
+          <ellipse cx="250" cy="55" rx="70" ry="20" />
+          <ellipse cx="300" cy="45" rx="55" ry="18" />
+          <ellipse cx="280" cy="60" rx="45" ry="14" />
+          <ellipse cx="850" cy="40" rx="65" ry="18" />
+          <ellipse cx="900" cy="32" rx="50" ry="15" />
+        </g>
+        <path
+          d="M0,240 Q180,210 360,225 Q540,240 720,220 Q900,200 1080,215 Q1260,230 1440,210 L1440,340 L0,340 Z"
+          fill="var(--footer-ground)"
+        />
+        <path
+          d="M0,260 Q200,245 400,255 Q600,265 800,248 Q1000,235 1200,250 Q1350,260 1440,240 L1440,340 L0,340 Z"
+          fill="var(--footer-ground-light)"
+        />
+        <!-- Paneles solares izq -->
+        <g transform="translate(80,185)">
+          <line
+            x1="25"
+            y1="15"
+            x2="25"
+            y2="60"
+            stroke="var(--footer-structure)"
+            stroke-width="2.5"
+          />
+          <line
+            x1="15"
+            y1="60"
+            x2="35"
+            y2="60"
+            stroke="var(--footer-structure)"
+            stroke-width="2.5"
+          />
+          <g transform="rotate(-12,25,7)">
+            <rect
+              x="-15"
+              y="-10"
+              width="80"
+              height="35"
+              rx="2"
+              fill="var(--footer-panel-fill)"
+              stroke="var(--footer-structure)"
+              stroke-width="1"
+            />
+            <line
+              x1="5"
+              y1="-10"
+              x2="5"
+              y2="25"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+            <line
+              x1="25"
+              y1="-10"
+              x2="25"
+              y2="25"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+            <line
+              x1="45"
+              y1="-10"
+              x2="45"
+              y2="25"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+            <line
+              x1="-15"
+              y1="8"
+              x2="65"
+              y2="8"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+          </g>
+        </g>
+        <g transform="translate(170,190)">
+          <line
+            x1="25"
+            y1="15"
+            x2="25"
+            y2="55"
+            stroke="var(--footer-structure)"
+            stroke-width="2.5"
+          />
+          <line
+            x1="15"
+            y1="55"
+            x2="35"
+            y2="55"
+            stroke="var(--footer-structure)"
+            stroke-width="2.5"
+          />
+          <g transform="rotate(-12,25,7)">
+            <rect
+              x="-15"
+              y="-10"
+              width="80"
+              height="35"
+              rx="2"
+              fill="var(--footer-panel-fill)"
+              stroke="var(--footer-structure)"
+              stroke-width="1"
+            />
+            <line
+              x1="5"
+              y1="-10"
+              x2="5"
+              y2="25"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+            <line
+              x1="25"
+              y1="-10"
+              x2="25"
+              y2="25"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+            <line
+              x1="45"
+              y1="-10"
+              x2="45"
+              y2="25"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+            <line
+              x1="-15"
+              y1="8"
+              x2="65"
+              y2="8"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+          </g>
+        </g>
+        <g transform="translate(260,188)">
+          <line
+            x1="25"
+            y1="15"
+            x2="25"
+            y2="57"
+            stroke="var(--footer-structure)"
+            stroke-width="2.5"
+          />
+          <line
+            x1="15"
+            y1="57"
+            x2="35"
+            y2="57"
+            stroke="var(--footer-structure)"
+            stroke-width="2.5"
+          />
+          <g transform="rotate(-12,25,7)">
+            <rect
+              x="-15"
+              y="-10"
+              width="80"
+              height="35"
+              rx="2"
+              fill="var(--footer-panel-fill)"
+              stroke="var(--footer-structure)"
+              stroke-width="1"
+            />
+            <line
+              x1="5"
+              y1="-10"
+              x2="5"
+              y2="25"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+            <line
+              x1="25"
+              y1="-10"
+              x2="25"
+              y2="25"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+            <line
+              x1="45"
+              y1="-10"
+              x2="45"
+              y2="25"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+            <line
+              x1="-15"
+              y1="8"
+              x2="65"
+              y2="8"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+          </g>
+        </g>
+        <!-- Paneles solares der -->
+        <g transform="translate(950,195)">
+          <line
+            x1="25"
+            y1="15"
+            x2="25"
+            y2="50"
+            stroke="var(--footer-structure)"
+            stroke-width="2.5"
+          />
+          <line
+            x1="15"
+            y1="50"
+            x2="35"
+            y2="50"
+            stroke="var(--footer-structure)"
+            stroke-width="2.5"
+          />
+          <g transform="rotate(-12,25,7)">
+            <rect
+              x="-15"
+              y="-10"
+              width="80"
+              height="35"
+              rx="2"
+              fill="var(--footer-panel-fill)"
+              stroke="var(--footer-structure)"
+              stroke-width="1"
+            />
+            <line
+              x1="5"
+              y1="-10"
+              x2="5"
+              y2="25"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+            <line
+              x1="25"
+              y1="-10"
+              x2="25"
+              y2="25"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+            <line
+              x1="45"
+              y1="-10"
+              x2="45"
+              y2="25"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+            <line
+              x1="-15"
+              y1="8"
+              x2="65"
+              y2="8"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+          </g>
+        </g>
+        <g transform="translate(1040,192)">
+          <line
+            x1="25"
+            y1="15"
+            x2="25"
+            y2="52"
+            stroke="var(--footer-structure)"
+            stroke-width="2.5"
+          />
+          <line
+            x1="15"
+            y1="52"
+            x2="35"
+            y2="52"
+            stroke="var(--footer-structure)"
+            stroke-width="2.5"
+          />
+          <g transform="rotate(-12,25,7)">
+            <rect
+              x="-15"
+              y="-10"
+              width="80"
+              height="35"
+              rx="2"
+              fill="var(--footer-panel-fill)"
+              stroke="var(--footer-structure)"
+              stroke-width="1"
+            />
+            <line
+              x1="5"
+              y1="-10"
+              x2="5"
+              y2="25"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+            <line
+              x1="25"
+              y1="-10"
+              x2="25"
+              y2="25"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+            <line
+              x1="45"
+              y1="-10"
+              x2="45"
+              y2="25"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+            <line
+              x1="-15"
+              y1="8"
+              x2="65"
+              y2="8"
+              stroke="var(--footer-panel-grid)"
+              stroke-width="0.5"
+            />
+          </g>
+        </g>
+        <!-- Aerogenerador 1 -->
+        <g transform="translate(550,60)">
+          <line
+            x1="0"
+            y1="8"
+            x2="0"
+            y2="175"
+            stroke="var(--footer-structure)"
+            stroke-width="5"
+            stroke-linecap="round"
+          />
+          <line
+            x1="-14"
+            y1="175"
+            x2="14"
+            y2="175"
+            stroke="var(--footer-structure)"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+          <circle
+            cx="0"
+            cy="0"
+            r="7"
+            fill="var(--footer-structure)"
+            stroke="var(--footer-blade)"
+            stroke-width="1.5"
+          />
+          <g>
+            <animateTransform
+              attributeName="transform"
+              type="rotate"
+              from="0 0 0"
+              to="360 0 0"
+              dur="6s"
+              repeatCount="indefinite"
+            />
+            <path
+              d="M-4,-7 L-6,-58 L-2,-74 L0,-78 L2,-74 L6,-58 L4,-7 Z"
+              fill="var(--footer-blade)"
+            />
+            <path
+              d="M-4,-7 L-6,-58 L-2,-74 L0,-78 L2,-74 L6,-58 L4,-7 Z"
+              fill="var(--footer-blade)"
+              transform="rotate(120,0,0)"
+            />
+            <path
+              d="M-4,-7 L-6,-58 L-2,-74 L0,-78 L2,-74 L6,-58 L4,-7 Z"
+              fill="var(--footer-blade)"
+              transform="rotate(240,0,0)"
+            />
+          </g>
+        </g>
+        <!-- Aerogenerador 2 -->
+        <g transform="translate(1300,95)">
+          <line
+            x1="0"
+            y1="6"
+            x2="0"
+            y2="140"
+            stroke="var(--footer-structure)"
+            stroke-width="4"
+            stroke-linecap="round"
+          />
+          <line
+            x1="-11"
+            y1="140"
+            x2="11"
+            y2="140"
+            stroke="var(--footer-structure)"
+            stroke-width="2.5"
+            stroke-linecap="round"
+          />
+          <circle
+            cx="0"
+            cy="0"
+            r="6"
+            fill="var(--footer-structure)"
+            stroke="var(--footer-blade)"
+            stroke-width="1.5"
+          />
+          <g>
+            <animateTransform
+              attributeName="transform"
+              type="rotate"
+              from="0 0 0"
+              to="360 0 0"
+              dur="9s"
+              repeatCount="indefinite"
+            />
+            <path
+              d="M-3.5,-5 L-5,-42 L-1.5,-55 L0,-60 L1.5,-55 L5,-42 L3.5,-5 Z"
+              fill="var(--footer-blade)"
+            />
+            <path
+              d="M-3.5,-5 L-5,-42 L-1.5,-55 L0,-60 L1.5,-55 L5,-42 L3.5,-5 Z"
+              fill="var(--footer-blade)"
+              transform="rotate(120,0,0)"
+            />
+            <path
+              d="M-3.5,-5 L-5,-42 L-1.5,-55 L0,-60 L1.5,-55 L5,-42 L3.5,-5 Z"
+              fill="var(--footer-blade)"
+              transform="rotate(240,0,0)"
+            />
+          </g>
+        </g>
+        <text
+          id="footerBrandText"
+          x="720"
+          y="318"
+          text-anchor="middle"
+          font-family="Inter, sans-serif"
+          font-size="13"
+          font-weight="600"
+          letter-spacing="0.15em"
+          fill="rgba(255,255,255,0.3)"
+        >
+          TODITICO ENERGÍA LIMPIA
+        </text>
+      </svg>
+    </footer>
+
+    <!-- FLOATING THEME TOGGLE (aparece al scrollear) -->
+    <div id="floating-theme" class="floating-theme">
+      <button
+        class="floating-theme-btn active"
+        data-theme="dark"
+        onclick="setTheme('dark')"
+        aria-label="Modo oscuro"
+      >
+        <i data-lucide="moon" class="w-5 h-5"></i>
+      </button>
+      <button
+        class="floating-theme-btn"
+        data-theme="light"
+        onclick="setTheme('light')"
+        aria-label="Modo claro"
+      >
+        <i data-lucide="sun" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- BACK TO TOP -->
+    <button
+      id="back-to-top"
+      class="back-to-top"
+      onclick="window.scrollTo({top:0,behavior:'smooth'})"
+      aria-label="Volver arriba"
+    >
+      <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+
+    <!-- ═════════════════ JAVASCRIPT ═════════════════ -->
+    <script>
+      var SITE_SETTINGS_URL = "./data/site-settings.json";
+
+      var productos = [
+        {
+          id: 1,
+          nombre: "Panel Solar Monocristalino 400W",
+          categoria: "solar",
+          imagen: "./assets/product-placeholder.jpg",
+          specs: [
+            { label: "Potencia", value: "400W" },
+            { label: "Eficiencia", value: "21.3%" },
+            { label: "Voltaje", value: "40V" },
+            { label: "Tipo", value: "Monocristalino" },
+          ],
+          ficha: "./downloads/fichas/ficha_panel_mono_400w.pdf",
+        },
+        {
+          id: 2,
+          nombre: "Panel Solar Bifacial 550W",
+          categoria: "solar",
+          imagen: "./assets/product-placeholder.jpg",
+          specs: [
+            { label: "Potencia", value: "550W" },
+            { label: "Eficiencia", value: "22.8%" },
+            { label: "Voltaje", value: "49.5V" },
+            { label: "Tipo", value: "Bifacial" },
+          ],
+          ficha: "./downloads/fichas/ficha_panel_bifacial_550w.pdf",
+        },
+        {
+          id: 3,
+          nombre: "Panel Solar Policristalino 330W",
+          categoria: "solar",
+          imagen: "./assets/product-placeholder.jpg",
+          specs: [
+            { label: "Potencia", value: "330W" },
+            { label: "Eficiencia", value: "17.5%" },
+            { label: "Voltaje", value: "38V" },
+            { label: "Tipo", value: "Policristalino" },
+          ],
+          ficha: "./downloads/fichas/ficha_panel_policristalino_330w.pdf",
+        },
+        {
+          id: 4,
+          nombre: "Panel Solar Flexible 200W",
+          categoria: "solar",
+          imagen: "./assets/product-placeholder.jpg",
+          specs: [
+            { label: "Potencia", value: "200W" },
+            { label: "Eficiencia", value: "19.2%" },
+            { label: "Voltaje", value: "24V" },
+            { label: "Tipo", value: "Flexible" },
+          ],
+          ficha: "./downloads/fichas/ficha_panel_flexible_200w.pdf",
+        },
+        {
+          id: 5,
+          nombre: "Aerogenerador Horizontal 3kW",
+          categoria: "eolico",
+          imagen: "./assets/product-placeholder.jpg",
+          specs: [
+            { label: "Potencia", value: "3kW" },
+            { label: "Viento inicio", value: "3 m/s" },
+            { label: "Diámetro rotor", value: "3.8m" },
+            { label: "Tipo", value: "Eje horizontal" },
+          ],
+          ficha: "./downloads/fichas/ficha_aerogenerador_3kw.pdf",
+        },
+        {
+          id: 6,
+          nombre: "Aerogenerador Horizontal 5kW",
+          categoria: "eolico",
+          imagen: "./assets/product-placeholder.jpg",
+          specs: [
+            { label: "Potencia", value: "5kW" },
+            { label: "Viento inicio", value: "3 m/s" },
+            { label: "Diámetro rotor", value: "5.2m" },
+            { label: "Tipo", value: "Eje horizontal" },
+          ],
+          ficha: "./downloads/fichas/ficha_aerogenerador_5kw.pdf",
+        },
+        {
+          id: 7,
+          nombre: "Aerogenerador Vertical 2kW",
+          categoria: "eolico",
+          imagen: "./assets/product-placeholder.jpg",
+          specs: [
+            { label: "Potencia", value: "2kW" },
+            { label: "Viento inicio", value: "2 m/s" },
+            { label: "Altura", value: "3.5m" },
+            { label: "Tipo", value: "Eje vertical" },
+          ],
+          ficha: "./downloads/fichas/ficha_aerogenerador_vertical_2kw.pdf",
+        },
+        {
+          id: 8,
+          nombre: "Inversor Híbrido 5kW",
+          categoria: "inversores",
+          imagen: "./assets/product-placeholder.jpg",
+          specs: [
+            { label: "Potencia", value: "5kW" },
+            { label: "Batería", value: "48V" },
+            { label: "Eficiencia", value: "97.6%" },
+            { label: "Tipo", value: "Híbrido" },
+          ],
+          ficha: "./downloads/fichas/ficha_inversor_hibrido_5kw.pdf",
+        },
+        {
+          id: 9,
+          nombre: "Inversor Híbrido 8kW",
+          categoria: "inversores",
+          imagen: "./assets/product-placeholder.jpg",
+          specs: [
+            { label: "Potencia", value: "8kW" },
+            { label: "Batería", value: "48V" },
+            { label: "Eficiencia", value: "97.8%" },
+            { label: "Tipo", value: "Híbrido" },
+          ],
+          ficha: "./downloads/fichas/ficha_inversor_hibrido_8kw.pdf",
+        },
+        {
+          id: 10,
+          nombre: "Inversor de String 10kW",
+          categoria: "inversores",
+          imagen: "./assets/product-placeholder.jpg",
+          specs: [
+            { label: "Potencia", value: "10kW" },
+            { label: "MPPT", value: "2 entradas" },
+            { label: "Eficiencia", value: "98.2%" },
+            { label: "Tipo", value: "String" },
+          ],
+          ficha: "./downloads/fichas/ficha_inversor_string_10kw.pdf",
+        },
+        {
+          id: 11,
+          nombre: "Microinversor 1200W",
+          categoria: "inversores",
+          imagen: "./assets/product-placeholder.jpg",
+          specs: [
+            { label: "Potencia", value: "1200W" },
+            { label: "MPPT", value: "Integrado" },
+            { label: "Eficiencia", value: "96.5%" },
+            { label: "Tipo", value: "Microinversor" },
+          ],
+          ficha: "./downloads/fichas/ficha_microinversor_1200w.pdf",
+        },
+      ];
+
+      function applySiteSettings(settings) {
+        if (!settings) return;
+
+        if (settings.branding) {
+          if (settings.branding.brandName) {
+            var nameEl = document.getElementById("brandName");
+            if (nameEl) nameEl.textContent = settings.branding.brandName;
+          }
+          if (settings.branding.brandTagline) {
+            var tagEl = document.getElementById("brandTagline");
+            if (tagEl) tagEl.textContent = settings.branding.brandTagline;
+          }
+          if (settings.branding.mainTitle) {
+            var heroMain = document.getElementById("heroTitleMain");
+            if (heroMain) heroMain.textContent = settings.branding.mainTitle;
+          }
+          if (settings.branding.accentTitle) {
+            var heroAccent = document.getElementById("heroTitleAccent");
+            if (heroAccent) heroAccent.textContent = settings.branding.accentTitle;
+          }
+          if (settings.branding.heroSubtitle) {
+            var subtitleEl = document.getElementById("heroSubtitle");
+            if (subtitleEl) subtitleEl.textContent = settings.branding.heroSubtitle;
+          }
+          if (settings.branding.footerText) {
+            var footerEl = document.getElementById("footerBrandText");
+            if (footerEl) footerEl.textContent = settings.branding.footerText;
+          }
+          if (settings.branding.heroImagePath) {
+            document.documentElement.style.setProperty(
+              "--hero-image",
+              "url('" + settings.branding.heroImagePath + "')"
+            );
+          }
+
+          if (settings.branding.useImageLogo && settings.branding.logoPath) {
+            var logoContainer = document.getElementById("brandLogoContainer");
+            if (logoContainer) {
+              logoContainer.innerHTML =
+                '<img src="' +
+                settings.branding.logoPath +
+                '" alt="' +
+                (settings.branding.logoAlt || "Logo") +
+                '" style="width:100%;height:100%;object-fit:cover;border-radius:0.5rem;" />';
+            }
+          }
+        }
+
+        if (Array.isArray(settings.downloads)) {
+          settings.downloads.forEach(function (item) {
+            var btn = document.getElementById(item.id);
+            if (!btn) return;
+            if (item.href) btn.setAttribute("href", item.href);
+
+            if (item.download) {
+              btn.setAttribute("download", "");
+              btn.onclick = function (event) {
+                handleDownload(event, item.toast || item.label || "Archivo");
+              };
+            } else {
+              btn.removeAttribute("download");
+              btn.onclick = function () {
+                showToast(item.toast || "Accion no configurada", "info");
+              };
+            }
+
+            if (item.titleId && item.label) {
+              var textEl = document.getElementById(item.titleId);
+              if (textEl) textEl.textContent = item.label;
+            }
+          });
+        }
+
+        if (settings.social) {
+          var socialMap = {
+            socialInstagram: settings.social.instagram,
+            socialFacebook: settings.social.facebook,
+            socialTwitter: settings.social.twitter,
+            socialLinkedin: settings.social.linkedin,
+            socialYoutube: settings.social.youtube,
+          };
+          Object.keys(socialMap).forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el && socialMap[id]) {
+              el.setAttribute("href", socialMap[id]);
+            }
+          });
+        }
+
+        if (settings.contact) {
+          var admin = document.getElementById("contactAdmin");
+          if (admin && settings.contact.adminUrl) {
+            admin.setAttribute("href", settings.contact.adminUrl);
+          }
+          var adminLabel = document.getElementById("contactAdminLabel");
+          if (adminLabel && settings.contact.adminLabel) {
+            adminLabel.textContent = settings.contact.adminLabel;
+          }
+
+          var store = document.getElementById("contactStore");
+          if (store && settings.contact.storeUrl) {
+            store.setAttribute("href", settings.contact.storeUrl);
+          }
+          var storeLabel = document.getElementById("contactStoreLabel");
+          if (storeLabel && settings.contact.storeLabel) {
+            storeLabel.textContent = settings.contact.storeLabel;
+          }
+        }
+
+        if (Array.isArray(settings.products) && settings.products.length) {
+          productos = settings.products.map(function (p) {
+            var specList = Array.isArray(p.specs) ? p.specs : [];
+            return {
+              id: p.id,
+              nombre: p.nombre,
+              categoria: p.categoria,
+              imagen: p.imagen || "./assets/product-placeholder.jpg",
+              specs: specList,
+              ficha: p.ficha,
+            };
+          });
+          renderProducts();
+        }
+      }
+
+      function loadSiteSettings() {
+        fetch(SITE_SETTINGS_URL)
+          .then(function (response) {
+            if (!response.ok) throw new Error("No se pudo cargar configuracion");
+            return response.json();
+          })
+          .then(function (settings) {
+            applySiteSettings(settings);
+          })
+          .catch(function () {
+            showToast("Usando configuracion por defecto", "info");
+          });
+      }
+
+      var currentFilter = "todos";
+      var currentSearch = "";
+
+      // ═══ TEMA ═══
+      function initTheme() {
+        var saved = localStorage.getItem("toditico-theme");
+        if (saved === "light") {
+          document.documentElement.classList.remove("dark");
+        } else {
+          document.documentElement.classList.add("dark");
+        }
+        syncThemeButtons();
+      }
+
+      function setTheme(theme) {
+        if (theme === "light") {
+          document.documentElement.classList.remove("dark");
+        } else {
+          document.documentElement.classList.add("dark");
+        }
+        localStorage.setItem("toditico-theme", theme);
+        syncThemeButtons();
+        showToast(
+          theme === "dark" ? "Modo oscuro activado" : "Modo claro activado",
+          "success"
+        );
+      }
+
+      function syncThemeButtons() {
+        var isDark = document.documentElement.classList.contains("dark");
+        // Navbar switch
+        var navBtns = document.querySelectorAll(
+          ".theme-switch .theme-switch-btn"
+        );
+        navBtns.forEach(function (btn) {
+          if (btn.getAttribute("data-theme") === (isDark ? "dark" : "light")) {
+            btn.classList.add("active");
+          } else {
+            btn.classList.remove("active");
+          }
+        });
+        // Floating switch
+        var floatBtns = document.querySelectorAll(".floating-theme-btn");
+        floatBtns.forEach(function (btn) {
+          if (btn.getAttribute("data-theme") === (isDark ? "dark" : "light")) {
+            btn.classList.add("active");
+          } else {
+            btn.classList.remove("active");
+          }
+        });
+      }
+
+      // ═══ TOASTS ═══
+      function showToast(message, type) {
+        var container = document.getElementById("toast-container");
+        var toast = document.createElement("div");
+        toast.className = "toast";
+        var icons = {
+          info: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>',
+          success:
+            '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+        };
+        toast.innerHTML =
+          (icons[type] || icons.info) + "<span>" + message + "</span>";
+        container.appendChild(toast);
+        setTimeout(function () {
+          toast.classList.add("toast-exit");
+          setTimeout(function () {
+            toast.remove();
+          }, 300);
+        }, 3000);
+      }
+
+      // ═══ DESCARGAS ═══
+      function handleDownload(event, name) {
+        event.preventDefault();
+        var href = event.currentTarget.getAttribute("href");
+        showToast("Preparando descarga: " + name, "success");
+        setTimeout(function () {
+          var a = document.createElement("a");
+          a.href = href;
+          a.download = "";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        }, 500);
+      }
+
+      // ═══ PRODUCTOS ═══
+      function getCategoryBadge(cat) {
+        var m = {
+          solar:
+            '<span class="badge badge-solar"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2m-7.07-3.93 1.41-1.41m11.32-11.32 1.41-1.41M2 12h2m16 0h2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41"/></svg> Solar</span>',
+          eolico:
+            '<span class="badge badge-eolico"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg> Eólico</span>',
+          inversores:
+            '<span class="badge badge-inversores"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg> Inversor</span>',
+        };
+        return m[cat] || "";
+      }
+
+      function renderProducts() {
+        var grid = document.getElementById("product-grid");
+        var noResults = document.getElementById("no-results");
+        var countEl = document.getElementById("product-count");
+        var search = currentSearch.toLowerCase();
+        var filtered = productos.filter(function (p) {
+          return (
+            (currentFilter === "todos" || p.categoria === currentFilter) &&
+            (search === "" || p.nombre.toLowerCase().indexOf(search) !== -1)
+          );
+        });
+        if (filtered.length === 0) {
+          grid.innerHTML = "";
+          noResults.classList.remove("hidden");
+          countEl.textContent = "0 productos encontrados";
+          return;
+        }
+        noResults.classList.add("hidden");
+        countEl.textContent =
+          "Mostrando " +
+          filtered.length +
+          " producto" +
+          (filtered.length !== 1 ? "s" : "");
+        var html = "";
+        for (var i = 0; i < filtered.length; i++) {
+          var p = filtered[i];
+          var specsHtml = "";
+          for (var j = 0; j < p.specs.length; j++) {
+            specsHtml +=
+              '<div class="spec-item"><span class="spec-label">' +
+              p.specs[j].label +
+              '</span><span class="spec-value">' +
+              p.specs[j].value +
+              "</span></div>";
+          }
+          var safeName = p.nombre.replace(/'/g, "\\'");
+          html +=
+            '<div class="product-card-wrapper"><article class="product-card"><div class="relative overflow-hidden"><img src="' +
+            p.imagen +
+            '" alt="' +
+            p.nombre +
+            '" class="card-img" loading="lazy"><div class="absolute top-3 right-3">' +
+            getCategoryBadge(p.categoria) +
+            '</div></div><div class="card-body"><h3 class="font-semibold text-sm mb-3 leading-snug" style="color:var(--text-primary)">' +
+            p.nombre +
+            '</h3><div class="mb-4">' +
+            specsHtml +
+            '</div><button class="btn-ficha w-full justify-center" onclick="handleFicha(\'' +
+            p.ficha +
+            "','" +
+            safeName +
+            '\')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><polyline points="14 2 14 8 20 8"/></svg>Ver Ficha Técnica</button></div></article></div>';
+        }
+        grid.innerHTML = html;
+      }
+
+      function handleFicha(url, name) {
+        showToast("Descargando ficha: " + name, "success");
+        setTimeout(function () {
+          var a = document.createElement("a");
+          a.href = url;
+          a.download = "";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        }, 400);
+      }
+
+      function setFilter(filter, btn) {
+        currentFilter = filter;
+        var pills = document.querySelectorAll(".filter-pill");
+        for (var i = 0; i < pills.length; i++)
+          pills[i].classList.remove("active");
+        btn.classList.add("active");
+        renderProducts();
+      }
+
+      var searchTimeout;
+      function handleSearch(value) {
+        clearTimeout(searchTimeout);
+        document
+          .getElementById("search-clear")
+          .classList.toggle("hidden", value.length === 0);
+        searchTimeout = setTimeout(function () {
+          currentSearch = value.trim();
+          renderProducts();
+        }, 150);
+      }
+
+      function clearSearch() {
+        document.getElementById("search-input").value = "";
+        document.getElementById("search-clear").classList.add("hidden");
+        currentSearch = "";
+        renderProducts();
+        document.getElementById("search-input").focus();
+      }
+
+      // ═══ MENÚ MÓVIL ═══
+      function openMobileMenu() {
+        document.getElementById("mobile-menu").classList.add("open");
+        document.getElementById("mobile-overlay").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeMobileMenu() {
+        document.getElementById("mobile-menu").classList.remove("open");
+        document.getElementById("mobile-overlay").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      // ═══ PARTÍCULAS ═══
+      function createParticles() {
+        var container = document.getElementById("hero-particles");
+        var count = window.innerWidth < 640 ? 8 : 18;
+        for (var i = 0; i < count; i++) {
+          var p = document.createElement("div");
+          p.className = "particle";
+          var size = Math.random() * 3 + 2;
+          p.style.width = size + "px";
+          p.style.height = size + "px";
+          p.style.left = Math.random() * 100 + "%";
+          p.style.bottom = "-10px";
+          p.style.animationDuration = Math.random() * 8 + 8 + "s";
+          p.style.animationDelay = Math.random() * 10 + "s";
+          p.style.opacity = (Math.random() * 0.4 + 0.1).toString();
+          container.appendChild(p);
+        }
+      }
+
+      // ═══ SCROLL REVEAL ═══
+      function initScrollReveal() {
+        var elements = document.querySelectorAll(".reveal");
+        for (var i = 0; i < elements.length; i++)
+          elements[i].classList.add("reveal-hidden");
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.remove("reveal-hidden");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.05, rootMargin: "-20px 0px -20px 0px" }
+        );
+        for (var j = 0; j < elements.length; j++) observer.observe(elements[j]);
+        setTimeout(function () {
+          var still = document.querySelectorAll(".reveal.reveal-hidden");
+          for (var k = 0; k < still.length; k++)
+            still[k].classList.remove("reveal-hidden");
+        }, 3000);
+      }
+
+      // ═══ FLOATING THEME + BACK TO TOP ═══
+      function initFloatingElements() {
+        var floatTheme = document.getElementById("floating-theme");
+        var backTop = document.getElementById("back-to-top");
+        window.addEventListener(
+          "scroll",
+          function () {
+            var show = window.scrollY > 500;
+            floatTheme.classList.toggle("visible", show);
+            backTop.classList.toggle("visible", show);
+          },
+          { passive: true }
+        );
+      }
+
+      // ═══ NAV ACTIVA ═══
+      function initActiveNav() {
+        var sections = document.querySelectorAll("section[id]");
+        var navLinks = document.querySelectorAll(".nav-link");
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                var id = entry.target.getAttribute("id");
+                navLinks.forEach(function (link) {
+                  if (link.getAttribute("href") === "#" + id) {
+                    link.style.color = "var(--text-primary)";
+                    link.style.fontWeight = "600";
+                  } else {
+                    link.style.color = "var(--text-secondary)";
+                    link.style.fontWeight = "500";
+                  }
+                });
+              }
+            });
+          },
+          { threshold: 0.3, rootMargin: "-80px 0px -50% 0px" }
+        );
+        sections.forEach(function (s) {
+          observer.observe(s);
+        });
+      }
+
+      // ═══ INIT ═══
+      document.addEventListener("DOMContentLoaded", function () {
+        initTheme();
+        createParticles();
+        renderProducts();
+        loadSiteSettings();
+        initScrollReveal();
+        initFloatingElements();
+        initActiveNav();
+        lucide.createIcons();
+      });
+    </script>
+  </body>
+</html>
