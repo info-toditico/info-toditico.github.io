@@ -2,7 +2,7 @@
   "productos": [
     {
       "id": 1,
-      "nombre": "Panel Solar Monocristalino",
+      "nombre": "Caneca",
       "modelo": "TSP-450M-HC",
       "categoria": "solar",
       "potencia": "450W",
