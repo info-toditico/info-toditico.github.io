@@ -10,14 +10,14 @@
     {
       "id": "downloadBtn1",
       "textId": "downloadBtn1Text",
-      "label": "Catalogo de Productos Renovables",
+      "label": "Catálogo de Productos Renovables",
       "href": "assets/downloads/TODITICO_CATÁLOGO_Energía_Limpia.xlsx",
       "download": true
     },
     {
       "id": "downloadBtn2",
       "textId": "downloadBtn2Text",
-      "label": "Manual de Mantenimiento Eolico",
+      "label": "Fichas técnicas y Manuales",
       "href": "manuales.html",
       "download": false
     }

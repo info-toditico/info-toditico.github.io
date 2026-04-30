@@ -247,33 +247,43 @@ class ProductsManager {
     this.products = [
       {
         id: 1,
-        nombre: "Panel Solar Monocristalino",
-        modelo: "TSP-450M-HC",
-        categoria: "solar",
-        potencia: "450W",
-        eficiencia: "21.5%",
-        garantia: "25 años",
-        ficha_url: "#",
+        nombre: "Estacion All in One",
+        modelo: "MUSTHBP1800-2024",
+        categoria: "estaciones",
+        potencia: "1800W",
+        ficha_url: "assets/downloads/fichas/MUSTHBP1800-2024_OLV.pdf",
       },
       {
         id: 2,
-        nombre: "Aerogenerador Residencial",
-        modelo: "TWG-5000-V",
-        categoria: "eolico",
-        potencia: "5kW",
-        velocidad_arranque: "3 m/s",
-        garantia: "5 años",
-        ficha_url: "#",
+        nombre: "Panel Solar",
+        modelo: "TSM-NEG18C.20",
+        categoria: "paneles",
+        potencia: "575-600W",
+        ficha_url: "assets/downloads/fichas/TSM-NEG18C.20_575-600W.pdf",
       },
       {
         id: 3,
-        nombre: "Inversor Híbrido",
-        modelo: "TIH-8000-MPPT",
-        categoria: "inversores",
-        potencia: "8kW",
-        eficiencia: "97.6%",
-        garantia: "5 años",
-        ficha_url: "#",
+        nombre: "Panel Solar",
+        modelo: "TSM-NEG18R.20",
+        categoria: "paneles",
+        potencia: "490-520W",
+        ficha_url: "assets/downloads/fichas/TSM-NEG18R.20_490-520W.pdf",
+      },
+      {
+        id: 4,
+        nombre: "Estructura de Montaje",
+        modelo: "CPV-1350A",
+        categoria: "estructuras",
+        tipo: "Montaje",
+        ficha_url: "assets/downloads/fichas/CPV-1350A_ficha_estructura_montaje.pdf",
+      },
+      {
+        id: 5,
+        nombre: "Estructura de Montaje",
+        modelo: "MST1015",
+        categoria: "estructuras",
+        tipo: "Montaje",
+        ficha_url: "assets/downloads/fichas/MST1015_ficha_estructura_montaje.pdf",
       },
     ];
     this.filteredProducts = [...this.products];
@@ -352,7 +362,8 @@ class ProductsManager {
           product.modelo.toLowerCase().includes(this.searchTerm) ||
           product.categoria.toLowerCase().includes(this.searchTerm) ||
           (product.potencia &&
-            product.potencia.toLowerCase().includes(this.searchTerm))
+            product.potencia.toLowerCase().includes(this.searchTerm)) ||
+          (product.tipo && product.tipo.toLowerCase().includes(this.searchTerm))
         );
       });
     }
@@ -447,26 +458,19 @@ class ProductsManager {
 
     // Especificaciones específicas por categoría
     switch (product.categoria) {
-      case "solar":
+      case "paneles":
         if (product.dimensiones)
           specs.push(`Dimensiones: ${product.dimensiones}`);
         if (product.certificaciones)
           specs.push(`Certificaciones: ${product.certificaciones}`);
         break;
-      case "eolico":
-        if (product.velocidad_arranque)
-          specs.push(`V. Arranque: ${product.velocidad_arranque}`);
-        if (product.velocidad_nominal)
-          specs.push(`V. Nominal: ${product.velocidad_nominal}`);
-        if (product.diametro_rotor)
-          specs.push(`Diámetro: ${product.diametro_rotor}`);
+      case "estaciones":
+        if (product.capacidad) specs.push(`Capacidad: ${product.capacidad}`);
+        if (product.voltaje) specs.push(`Voltaje: ${product.voltaje}`);
         break;
-      case "inversores":
-        if (product.voltaje_entrada)
-          specs.push(`Entrada: ${product.voltaje_entrada}`);
-        if (product.voltaje_salida)
-          specs.push(`Salida: ${product.voltaje_salida}`);
+      case "estructuras":
         if (product.tipo) specs.push(`Tipo: ${product.tipo}`);
+        if (product.material) specs.push(`Material: ${product.material}`);
         break;
     }
 
@@ -480,9 +484,9 @@ class ProductsManager {
    */
   getCategoryIcon(category) {
     const icons = {
-      solar: '<i class="fas fa-solar-panel"></i>',
-      eolico: '<i class="fas fa-wind"></i>',
-      inversores: '<i class="fas fa-bolt"></i>',
+      estaciones: '<i class="fas fa-charging-station"></i>',
+      paneles: '<i class="fas fa-solar-panel"></i>',
+      estructuras: '<i class="fas fa-sitemap"></i>',
     };
     return icons[category] || '<i class="fas fa-cube"></i>';
   }
@@ -494,9 +498,9 @@ class ProductsManager {
    */
   getCategoryName(category) {
     const names = {
-      solar: "Solar",
-      eolico: "Eólico",
-      inversores: "Inversores",
+      estaciones: "Estaciones All in One",
+      paneles: "Paneles solares",
+      estructuras: "Estructuras",
     };
     return names[category] || category;
   }
