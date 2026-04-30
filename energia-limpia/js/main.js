@@ -247,14 +247,6 @@ class ProductsManager {
     this.products = [
       {
         id: 1,
-        nombre: "Estacion All in One",
-        modelo: "MUSTHBP1800-2024",
-        categoria: "estaciones",
-        potencia: "1800W",
-        ficha_url: "assets/downloads/fichas/MUSTHBP1800-2024_OLV.pdf",
-      },
-      {
-        id: 2,
         nombre: "Panel Solar",
         modelo: "TSM-NEG18C.20",
         categoria: "paneles",
@@ -262,7 +254,7 @@ class ProductsManager {
         ficha_url: "assets/downloads/fichas/TSM-NEG18C.20_575-600W.pdf",
       },
       {
-        id: 3,
+        id: 2,
         nombre: "Panel Solar",
         modelo: "TSM-NEG18R.20",
         categoria: "paneles",
@@ -270,20 +262,12 @@ class ProductsManager {
         ficha_url: "assets/downloads/fichas/TSM-NEG18R.20_490-520W.pdf",
       },
       {
-        id: 4,
+        id: 3,
         nombre: "Estructura de Montaje",
         modelo: "CPV-1350A",
         categoria: "estructuras",
         tipo: "Montaje",
         ficha_url: "assets/downloads/fichas/CPV-1350A_ficha_estructura_montaje.pdf",
-      },
-      {
-        id: 5,
-        nombre: "Estructura de Montaje",
-        modelo: "MST1015",
-        categoria: "estructuras",
-        tipo: "Montaje",
-        ficha_url: "assets/downloads/fichas/MST1015_ficha_estructura_montaje.pdf",
       },
     ];
     this.filteredProducts = [...this.products];

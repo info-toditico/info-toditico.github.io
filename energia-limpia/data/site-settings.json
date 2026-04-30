@@ -1,10 +1,10 @@
 {
   "branding": {
-    "mainTitle": "Informacion General de Toditico",
-    "subTitle": "Energia Limpia",
+    "mainTitle": "Información General de Toditico",
+    "subTitle": "Energía Limpia",
     "logoPath": "assets/logo.png",
-    "logoAlt": "Toditico Energia Limpia",
-    "footerText": "© 2026 Toditico Energia Limpia. Todos los derechos reservados."
+    "logoAlt": "Toditico Energía Limpia",
+    "footerText": "© 2026 Toditico Energía Limpia. Todos los derechos reservados."
   },
   "downloads": [
     {
@@ -23,20 +23,18 @@
     }
   ],
   "social": {
-    "instagram": "https://instagram.com/toditico",
-    "facebook": "https://facebook.com/toditico",
-    "youtube": "https://youtube.com/toditico",
-    "linkedin": "https://linkedin.com/company/toditico",
-    "whatsapp": "https://wa.me/573001234567"
+    "instagram": "https://www.instagram.com/toditico_energialimpia?igsh=MWd0NnV2cGIzYWFxdQ==",
+    "facebook": "https://www.facebook.com/share/1AsADJhihh/",
+    "whatsapp": "https://chat.whatsapp.com/Ihf3ZgnR1gN5670HXyEXnO"
   },
   "contact": {
     "admin": {
       "label": "Contactar al Administrador",
-      "email": "admin@toditico.com"
+      "email": "administracion@toditico.com"
     },
     "store": {
       "label": "Contactar con la Tienda",
-      "email": "tienda@toditico.com"
+      "email": "info-ventas@toditico.com"
     }
   }
 }
