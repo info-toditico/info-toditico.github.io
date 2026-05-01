@@ -30,11 +30,11 @@
   "contact": {
     "admin": {
       "label": "Contactar al Administrador",
-      "email": "administracion@toditico.com"
+      "whatsapp": "https://wa.me/+5350745857"
     },
     "store": {
       "label": "Contactar con la Tienda",
-      "email": "info-ventas@toditico.com"
+      "whatsapp": "https://wa.me/+5350524119"
     }
   }
 }

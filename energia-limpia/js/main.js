@@ -95,14 +95,18 @@ class SiteSettingsManager {
     const storeBtn = document.getElementById("contactStoreBtn");
     const storeText = document.getElementById("contactStoreText");
 
-    if (contact.admin?.email && adminBtn) {
+    if (contact.admin?.whatsapp && adminBtn) {
+      adminBtn.setAttribute("href", contact.admin.whatsapp);
+    } else if (contact.admin?.email && adminBtn) {
       adminBtn.setAttribute("href", `mailto:${contact.admin.email}`);
     }
     if (contact.admin?.label && adminText) {
       adminText.textContent = contact.admin.label;
     }
 
-    if (contact.store?.email && storeBtn) {
+    if (contact.store?.whatsapp && storeBtn) {
+      storeBtn.setAttribute("href", contact.store.whatsapp);
+    } else if (contact.store?.email && storeBtn) {
       storeBtn.setAttribute("href", `mailto:${contact.store.email}`);
     }
     if (contact.store?.label && storeText) {
