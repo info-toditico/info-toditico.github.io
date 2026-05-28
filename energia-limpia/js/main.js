@@ -262,7 +262,7 @@ class ProductsManager {
         nombre: "Panel Solar Bifacial",
         modelo: "TSM-NEG18RC.27",
         categoria: "paneles",
-        potencia: "490-520W",
+        potencia: "495-520W",
         ficha_url: "assets/downloads/fichas/TSM-NEG18RC.27_495-520W.pdf",
       },
       {
