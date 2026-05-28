@@ -2,7 +2,7 @@
   "productos": [
     {
       "id": 1,
-      "nombre": "Panel Solar",
+      "nombre": "Panel Solar Bifacial",
       "modelo": "TSM-NEG18C.20",
       "categoria": "paneles",
       "potencia": "575-600W",
@@ -10,11 +10,11 @@
     },
     {
       "id": 2,
-      "nombre": "Panel Solar",
+      "nombre": "Panel Solar Bifacial",
       "modelo": "TSM-NEG18R.20",
       "categoria": "paneles",
-      "potencia": "490-520W",
-      "ficha_url": "assets/downloads/fichas/TSM-NEG18R.20_490-520W.pdf"
+      "potencia": "495-520W",
+      "ficha_url": "assets/downloads/fichas/TSM-NEG18RC.27_495-520W.pdf"
     },
     {
       "id": 3,

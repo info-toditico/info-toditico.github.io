@@ -251,7 +251,7 @@ class ProductsManager {
     this.products = [
       {
         id: 1,
-        nombre: "Panel Solar",
+        nombre: "Panel Solar Bifacial",
         modelo: "TSM-NEG18C.20",
         categoria: "paneles",
         potencia: "575-600W",
@@ -259,11 +259,11 @@ class ProductsManager {
       },
       {
         id: 2,
-        nombre: "Panel Solar",
-        modelo: "TSM-NEG18R.20",
+        nombre: "Panel Solar Bifacial",
+        modelo: "TSM-NEG18RC.27",
         categoria: "paneles",
         potencia: "490-520W",
-        ficha_url: "assets/downloads/fichas/TSM-NEG18R.20_490-520W.pdf",
+        ficha_url: "assets/downloads/fichas/TSM-NEG18RC.27_495-520W.pdf",
       },
       {
         id: 3,
