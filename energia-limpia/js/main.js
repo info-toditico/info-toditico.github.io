@@ -47,11 +47,13 @@ class SiteSettingsManager {
     const logo = document.getElementById("siteLogo");
     const footerText = document.getElementById("siteFooterText");
 
-    if (mainTitle && branding.mainTitle) mainTitle.textContent = branding.mainTitle;
+    if (mainTitle && branding.mainTitle)
+      mainTitle.textContent = branding.mainTitle;
     if (subTitle && branding.subTitle) subTitle.textContent = branding.subTitle;
     if (logo && branding.logoPath) logo.setAttribute("src", branding.logoPath);
     if (logo && branding.logoAlt) logo.setAttribute("alt", branding.logoAlt);
-    if (footerText && branding.footerText) footerText.textContent = branding.footerText;
+    if (footerText && branding.footerText)
+      footerText.textContent = branding.footerText;
   }
 
   applyDownloads(downloads) {
@@ -251,7 +253,7 @@ class ProductsManager {
     this.products = [
       {
         id: 1,
-        nombre: "Panel Solar Bifacial",
+        nombre: "Panel Solar Bifacial 595W",
         modelo: "TSM-NEG18C.20",
         categoria: "paneles",
         potencia: "575-600W",
@@ -259,7 +261,7 @@ class ProductsManager {
       },
       {
         id: 2,
-        nombre: "Panel Solar Bifacial",
+        nombre: "Panel Solar Bifacial 505W",
         modelo: "TSM-NEG18RC.27",
         categoria: "paneles",
         potencia: "495-520W",
@@ -267,11 +269,62 @@ class ProductsManager {
       },
       {
         id: 3,
-        nombre: "Estructura de Montaje",
-        modelo: "CPV-1350A",
+        nombre: "Cable Solar",
+        modelo: "h1z2z2-k",
+        categoria: "cables",
+        tipo: "Cable",
+        ficha_url:
+          "assets/downloads/fichas/topcable-datasheet-topsolar-pv-h1z2z2-k-es.pdf",
+      },
+      {
+        id: 4,
+        nombre: "Cable Eléctrico",
+        modelo: "h07z1-k",
+        categoria: "cables",
+        tipo: "Cable",
+        ficha_url:
+          "assets/downloads/fichas/topcable-datasheet-toxfree-lszh-es05z1-k-h07z1-k-es.pdf",
+      },
+      {
+        id: 5,
+        nombre: "Catálogo de Estructuras",
+        modelo: "Catálogo",
+        categoria: "estructuras",
+        tipo: "Catálogo",
+        ficha_url: "assets/downloads/fichas/Catálogo_Estructuras_Toditico.pdf",
+      },
+      {
+        id: 6,
+        nombre:
+          "SISTEMA PARA CUBIERTA PLANA CON MÓDULO EN VERTICAL SOBRE TRIÁNGULO 1625 ABIERTO°",
+        modelo: "CPV-1625A",
         categoria: "estructuras",
         tipo: "Montaje",
-        ficha_url: "assets/downloads/fichas/CPV-1350A_ficha_estructura_montaje.pdf",
+        ficha_url: "assets/downloads/fichas/Ficha_tecnica_CPV-1625A.pdf",
+      },
+      {
+        id: 7,
+        nombre: "SISTEMA COPLANAR PARA CUBIERTA GRECADA CON MICROPERFIL C36",
+        modelo: "CI-G7",
+        categoria: "estructuras",
+        tipo: "Montaje",
+        ficha_url: "assets/downloads/fichas/Ficha_tecnica_CI-G7.pdf",
+      },
+      {
+        id: 8,
+        nombre: "SISTEMA COPLANAR PARA TEJA ÁRABE (RACILLA) CON ANCLAJE TEJA",
+        modelo: "C1-A1",
+        categoria: "estructuras",
+        tipo: "Montaje",
+        ficha_url: "assets/downloads/fichas/Ficha_tecnica_CI-A1.pdf",
+      },
+      {
+        id: 9,
+        nombre: "SISTEMA COPLANAR PARA CUBIERTA GRECADA CON MICROPERFIL C43",
+        modelo: "CI-G4",
+        categoria: "estructuras",
+        tipo: "Montaje",
+        ficha_url: "assets/downloads/fichas/Ficha_tecnica_CI-G4.pdf",
       },
     ];
     this.filteredProducts = [...this.products];
@@ -460,6 +513,10 @@ class ProductsManager {
         if (product.tipo) specs.push(`Tipo: ${product.tipo}`);
         if (product.material) specs.push(`Material: ${product.material}`);
         break;
+      case "cables":
+        if (product.tipo) specs.push(`Tipo: ${product.tipo}`);
+        if (product.material) specs.push(`Material: ${product.material}`);
+        break;
     }
 
     return specs;
@@ -475,6 +532,7 @@ class ProductsManager {
       estaciones: '<i class="fas fa-charging-station"></i>',
       paneles: '<i class="fas fa-solar-panel"></i>',
       estructuras: '<i class="fas fa-sitemap"></i>',
+      cables: '<i class="fas fa-plug"></i>',
     };
     return icons[category] || '<i class="fas fa-cube"></i>';
   }
@@ -489,6 +547,7 @@ class ProductsManager {
       estaciones: "Estaciones All in One",
       paneles: "Paneles solares",
       estructuras: "Estructuras",
+      cables: "Cables",
     };
     return names[category] || category;
   }
@@ -529,17 +588,13 @@ class ProductsManager {
  * @param {number} productId - ID del producto
  */
 window.viewProductDetails = function (productId) {
-  // EJEMPLO: Aquí puedes implementar un modal con más detalles
-  // Por ahora, mostramos una alerta simple
-  alert(
-    `Ver detalles del producto ID: ${productId}\n\nEsta función puede expandirse para mostrar un modal con información detallada.`
-  );
-
-  // IMPLEMENTACIÓN SUGERIDA:
-  // 1. Crear un modal HTML
-  // 2. Buscar el producto por ID
-  // 3. Llenar el modal con toda la información
-  // 4. Mostrar el modal con animación
+  // PDF preview using PDF.js
+  const manager = window.productsManager;
+  if (!manager) return alert("Gestor de productos no inicializado");
+  const prod = manager.products.find((p) => p.id === productId);
+  if (!prod) return alert("Producto no encontrado");
+  const url = prod.ficha_url;
+  openPdfModal(url, prod.nombre || prod.modelo || "Vista previa");
 };
 
 // ==========================================
@@ -569,12 +624,142 @@ document.addEventListener("DOMContentLoaded", () => {
   new ThemeManager();
 
   // Inicializar gestor de productos (solo en página de manuales)
-  new ProductsManager();
+  // Guardar instancia global para poder acceder desde funciones globales
+  window.productsManager = new ProductsManager();
 
   console.log(
     "✅ Toditico Energía Limpia - Aplicación inicializada correctamente"
   );
 });
+
+// ===== PDF.js Modal Logic =====
+if (window.pdfjsLib) {
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
+}
+
+let _pdfDoc = null;
+let _pageNum = 1;
+let _scale = 1.0;
+let _canvas = null;
+let _ctx = null;
+
+function openPdfModal(url, title) {
+  const modal = document.getElementById("pdfModal");
+  const backdrop = document.getElementById("pdfBackdrop");
+  const titleEl = document.getElementById("pdfTitle");
+  const pageInfo = document.getElementById("pdfPageInfo");
+  const downloadLink = document.getElementById("pdfDownloadLink");
+
+  if (!modal) return window.open(url, "_blank");
+
+  modal.setAttribute("aria-hidden", "false");
+  titleEl.textContent = title || "Vista previa";
+  downloadLink.href = url;
+  downloadLink.setAttribute("download", "");
+
+  // Canvas setup
+  _canvas = document.getElementById("pdfCanvas");
+  if (!_canvas) return window.open(url, "_blank");
+  _ctx = _canvas.getContext("2d");
+
+  // Attach control handlers
+  document.getElementById("pdfClose").onclick = closePdfModal;
+  document.getElementById("pdfPrev").onclick = onPrevPage;
+  document.getElementById("pdfNext").onclick = onNextPage;
+  document.getElementById("pdfZoomIn").onclick = () => changeZoom(0.25);
+  document.getElementById("pdfZoomOut").onclick = () => changeZoom(-0.25);
+  backdrop.onclick = closePdfModal;
+
+  // Load PDF with pdfjs if available, otherwise open in new tab
+  if (window.pdfjsLib && pdfjsLib.getDocument) {
+    // Ensure workerSrc is set (in case pdf.js was loaded after this script)
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      pdfjsLib.GlobalWorkerOptions.workerSrc ||
+      "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
+    pdfjsLib
+      .getDocument(url)
+      .promise.then(function (pdfDoc_) {
+        _pdfDoc = pdfDoc_;
+        _pageNum = 1;
+        _scale = 1.0;
+        renderPage(_pageNum);
+        pageInfo.textContent = `${_pageNum} / ${_pdfDoc.numPages}`;
+      })
+      .catch(function (err) {
+        console.error("Error cargando PDF:", err);
+        // fallback: open in new tab
+        window.open(url, "_blank");
+        closePdfModal();
+      });
+  } else {
+    window.open(url, "_blank");
+    closePdfModal();
+  }
+}
+
+function closePdfModal() {
+  const modal = document.getElementById("pdfModal");
+  if (!modal) return;
+  modal.setAttribute("aria-hidden", "true");
+  if (_pdfDoc) {
+    _pdfDoc = null;
+  }
+  if (_canvas && _ctx) {
+    _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
+  }
+}
+
+function renderPage(num) {
+  _pdfDoc.getPage(num).then(function (page) {
+    const viewport = page.getViewport({ scale: _scale });
+    const outputScale = window.devicePixelRatio || 1;
+    _canvas.width = Math.floor(viewport.width * outputScale);
+    _canvas.height = Math.floor(viewport.height * outputScale);
+    _canvas.style.width = Math.floor(viewport.width) + "px";
+    _canvas.style.height = Math.floor(viewport.height) + "px";
+
+    const transform =
+      outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null;
+    const renderContext = {
+      canvasContext: _ctx,
+      transform: transform,
+      viewport: viewport,
+    };
+    page.render(renderContext).promise.then(function () {
+      const pageInfo = document.getElementById("pdfPageInfo");
+      pageInfo.textContent = `${_pageNum} / ${_pdfDoc.numPages}`;
+    });
+  });
+}
+
+function queueRenderPage(num) {
+  if (!_pdfDoc) return;
+  if (num < 1) num = 1;
+  if (num > _pdfDoc.numPages) num = _pdfDoc.numPages;
+  _pageNum = num;
+  renderPage(_pageNum);
+}
+
+function onPrevPage() {
+  if (!_pdfDoc) return;
+  if (_pageNum <= 1) return;
+  _pageNum--;
+  queueRenderPage(_pageNum);
+}
+
+function onNextPage() {
+  if (!_pdfDoc) return;
+  if (_pageNum >= _pdfDoc.numPages) return;
+  _pageNum++;
+  queueRenderPage(_pageNum);
+}
+
+function changeZoom(delta) {
+  if (!_pdfDoc) return;
+  _scale = Math.max(0.5, Math.min(3.0, _scale + delta));
+  queueRenderPage(_pageNum);
+}
 
 // ==========================================
 // DETECTAR CONEXIÓN A INTERNET

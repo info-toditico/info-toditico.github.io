@@ -2,7 +2,7 @@
   "productos": [
     {
       "id": 1,
-      "nombre": "Panel Solar Bifacial",
+      "nombre": "Panel Solar Bifacial 595W",
       "modelo": "TSM-NEG18C.20",
       "categoria": "paneles",
       "potencia": "575-600W",
@@ -10,19 +10,67 @@
     },
     {
       "id": 2,
-      "nombre": "Panel Solar Bifacial",
-      "modelo": "TSM-NEG18R.20",
+      "nombre": "Panel Solar Bifacial 505W",
+      "modelo": "TSM-NEG18RC.27",
       "categoria": "paneles",
       "potencia": "495-520W",
       "ficha_url": "assets/downloads/fichas/TSM-NEG18RC.27_495-520W.pdf"
     },
     {
       "id": 3,
-      "nombre": "Estructura de Montaje",
-      "modelo": "CPV-1350A",
+      "nombre": "Cable Solar",
+      "modelo": "h1z2z2-k",
+      "categoria": "cables",
+      "tipo": "Cable",
+      "ficha_url": "assets/downloads/fichas/topcable-datasheet-topsolar-pv-h1z2z2-k-es.pdf"
+    },
+    {
+      "id": 4,
+      "nombre": "Cable Eléctrico",
+      "modelo": "h07z1-k",
+      "categoria": "cables",
+      "tipo": "Cable",
+      "ficha_url": "assets/downloads/fichas/topcable-datasheet-toxfree-lszh-es05z1-k-h07z1-k-es.pdf"
+    },
+    {
+      "id": 5,
+      "nombre": "Catálogo de Estructuras",
+      "modelo": "Catálogo",
+      "categoria": "estructuras",
+      "tipo": "Catálogo",
+      "ficha_url": "assets/downloads/fichas/Catálogo_Estructuras_Toditico.pdf"
+    },
+    {
+      "id": 6,
+      "nombre": "SISTEMA PARA CUBIERTA PLANA CON MÓDULO EN VERTICAL SOBRE TRIÁNGULO 1625 ABIERTO°",
+      "modelo": "CPV-1625A",
       "categoria": "estructuras",
       "tipo": "Montaje",
-      "ficha_url": "assets/downloads/fichas/CPV-1350A_ficha_estructura_montaje.pdf"
+      "ficha_url": "assets/downloads/fichas/Ficha_tecnica_CPV-1625A.pdf"
+    },
+    {
+      "id": 7,
+      "nombre": "SISTEMA COPLANAR PARA CUBIERTA GRECADA CON MICROPERFIL C36",
+      "modelo": "CI-G7",
+      "categoria": "estructuras",
+      "tipo": "Montaje",
+      "ficha_url": "assets/downloads/fichas/Ficha_tecnica_CI-G7.pdf"
+    },
+    {
+      "id": 8,
+      "nombre": "SISTEMA COPLANAR PARA TEJA ÁRABE (RACILLA) CON ANCLAJE TEJA",
+      "modelo": "C1-A1",
+      "categoria": "estructuras",
+      "tipo": "Montaje",
+      "ficha_url": "assets/downloads/fichas/Ficha_tecnica_CI-A1.pdf"
+    },
+    {
+      "id": 9,
+      "nombre": "SISTEMA COPLANAR PARA CUBIERTA GRECADA CON MICROPERFIL C43",
+      "modelo": "CI-G4",
+      "categoria": "estructuras",
+      "tipo": "Montaje",
+      "ficha_url": "assets/downloads/fichas/Ficha_tecnica_CI-G4.pdf"
     }
   ]
 }

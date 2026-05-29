@@ -67,6 +67,9 @@
           <button class="filter-btn" data-category="estructuras">
             <i class="fas fa-sitemap"></i> Estructuras
           </button>
+            <button class="filter-btn" data-category="cables">
+              <i class="fas fa-plug"></i> Cables
+            </button>
         </div>
       </section>
 
@@ -83,5 +86,38 @@
     </main>
 
     <script src="js/main.js"></script>
+    <!-- PDF.js from CDN for reliable cross-browser PDF preview -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+
+    <!-- PDF Preview Modal -->
+    <div id="pdfModal" class="pdf-modal" aria-hidden="true">
+      <div class="pdf-modal-backdrop" id="pdfBackdrop"></div>
+      <div
+        class="pdf-modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="pdfTitle"
+      >
+        <header class="pdf-modal-header">
+          <h2 id="pdfTitle">Vista previa</h2>
+          <div class="pdf-modal-actions">
+            <button id="pdfPrev" class="btn">Anterior</button>
+            <span id="pdfPageInfo">0 / 0</span>
+            <button id="pdfNext" class="btn">Siguiente</button>
+            <button id="pdfZoomOut" class="btn">-</button>
+            <button id="pdfZoomIn" class="btn">+</button>
+            <a id="pdfDownloadLink" class="btn btn-primary" href="#" download
+              >Descargar</a
+            >
+            <button id="pdfClose" class="btn" aria-label="Cerrar">
+              Cerrar
+            </button>
+          </div>
+        </header>
+        <div class="pdf-modal-body">
+          <canvas id="pdfCanvas" style="width: 100%; height: auto"></canvas>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

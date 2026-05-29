@@ -27,6 +27,10 @@ Si tienes Python instalado:
 python -m http.server 5500
 ```
 
+Nota: en esta guía usamos el puerto `5500` por consistencia con la opción `http-server`. Si prefieres otro puerto, usa el mismo puerto al abrir las URLs en el navegador.
+
+Importante: ejecuta el comando **desde la raíz del proyecto** (`info-toditico`) para que las rutas relativas funcionen correctamente (por ejemplo `energia-limpia/manuales.html`).
+
 ## 2) Archivo principal de configuracion
 
 Edita este archivo:
@@ -177,3 +181,31 @@ Por ejemplo, para PDF:
 3. Revisar que `categoria` en productos coincide con filtros.
 4. Revisar iconos de botones en `index.html` y `manuales.html`.
 5. Probar siempre desde `http://127.0.0.1:5500`.
+
+## 9) PDF.js y vista previa de PDFs (modal)
+
+Este proyecto incluye una vista previa de PDFs implementada con **PDF.js** (CDN). Al pulsar "Ver Detalles" en la página de manuales, se abrirá un modal que renderiza el PDF en un `canvas` con controles de navegación y zoom.
+
+Puntos importantes:
+
+- Si trabajas offline o en un entorno sin acceso a CDN, puedes descargar los archivos `pdf.min.js` y `pdf.worker.min.js` y servirlos desde `assets/libs/pdfjs/` y actualizar la referencia en `manuales.html`.
+- PDF.js requiere que el sitio se sirva por `http` (no `file://`), por eso es imprescindible seguir la sección 1.
+
+Pasos para comprobar la vista previa (rápido):
+
+1. Levanta el servidor desde la raíz del proyecto (ej.: `python -m http.server 5500` o `npx http-server -p 5500`).
+2. Abre `http://127.0.0.1:5500/energia-limpia/manuales.html`.
+3. Localiza cualquier producto con un `ficha_url` apuntando a `assets/downloads/fichas/...` y pulsa "Ver Detalles".
+4. Debería abrirse un modal con el PDF renderizado; usa "Anterior/Siguiente" para navegar y "+/-" para zoom.
+
+Si el modal no carga el PDF:
+
+1. Comprueba la consola del navegador para errores de CORS o rutas incorrectas.
+2. Verifica que `ficha_url` en `data/productos.json` apunta al archivo correcto y que el archivo existe en `assets/downloads/fichas/`.
+3. Como fallback, el proyecto abre el PDF en una nueva pestaña si PDF.js falla.
+
+## 10) Notas de compatibilidad y recomendaciones
+
+- PDF.js ofrece la mejor compatibilidad entre navegadores y control UX (zoom, navegación). Recomendado en entornos públicos.
+- Para pruebas rápidas en desarrollo, usar la versión CDN es cómodo; para producción se recomienda hospedar los archivos de PDF.js localmente y versionarlos.
+- Añade en la checklist verificar la existencia del archivo `pdf.worker.min.js` si usas copia local.
