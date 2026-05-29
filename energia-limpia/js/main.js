@@ -312,7 +312,7 @@ class ProductsManager {
       },
       {
         id: 8,
-        nombre: "SISTEMA COPLANAR PARA TEJA ÁRABE (RACILLA) CON ANCLAJE TEJA",
+        nombre: "SISTEMA COPLANAR PARA TEJA ÁRABE (RASILLA) CON ANCLAJE TEJA",
         modelo: "C1-A1",
         categoria: "estructuras",
         tipo: "Montaje",
