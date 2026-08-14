@@ -11,7 +11,7 @@
       "id": "downloadBtn1",
       "textId": "downloadBtn1Text",
       "label": "Catálogo de Productos Renovables",
-      "href": "assets/downloads/TODITICO_CATÁLOGO_Energía_Limpia.xlsx",
+      "href": "https://catalogo-inky-omega.vercel.app/api/catalogo",
       "download": true
     },
     {
