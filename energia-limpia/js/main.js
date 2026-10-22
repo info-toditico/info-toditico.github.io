@@ -326,6 +326,14 @@ class ProductsManager {
         tipo: "Montaje",
         ficha_url: "assets/downloads/fichas/Ficha_tecnica_CI-G4.pdf",
       },
+      {
+        id: 10,
+        nombre: "Panel Solar Bifacial 620W",
+        modelo: "TSM-NEG18RC.27",
+        categoria: "paneles",
+        potencia: "610-635W",
+        ficha_url: "assets/downloads/fichas/NEG19RC.20_610-635W.pdf",
+      },
     ];
     this.filteredProducts = [...this.products];
   }
